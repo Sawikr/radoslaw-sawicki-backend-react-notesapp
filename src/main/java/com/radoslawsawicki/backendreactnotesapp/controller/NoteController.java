@@ -15,13 +15,13 @@ import java.util.List;
 @CrossOrigin("*")
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api")
+@RequestMapping("/api/notes")
 public class NoteController {
 
 	private final NoteMapper mapper;
 	private final NoteService service;
 
-	@GetMapping("/notes")
+	@GetMapping("/")
 	public ResponseEntity<List<NoteDto>> getNotes () {
 		List<Note> notes = service.getAllNotes();
 		return ResponseEntity.ok(mapper.mapToNoteDtoList(notes));
