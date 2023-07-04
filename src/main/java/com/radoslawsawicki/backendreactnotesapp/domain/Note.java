@@ -2,6 +2,8 @@ package com.radoslawsawicki.backendreactnotesapp.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
+import java.util.Date;
 import java.util.Objects;
 
 @Getter
@@ -12,12 +14,15 @@ import java.util.Objects;
 @Table(name="NOTES")
 public class Note {
 
-	private Long noteId;
+	private Long id;
 	private String title;
 	private String body;
 	private String category;
 	private NoteList noteList;
 	private LoginUser loginUser;
+	private Date noteCreationDate;
+	private Date updateNoteCreationDate;
+	private NoteCreatedDate NoteCreatedDateList;
 
 	public Note(String title, String body, String category, NoteList noteList) {
 		this.title = title;
@@ -29,9 +34,9 @@ public class Note {
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	@NonNull
-	@Column(name = "NOTE_ID", unique = true)
-	public Long getNoteId() {
-		return noteId;
+	@Column(name = "ID", unique = true)
+	public Long getId() {
+		return id;
 	}
 
 	@NonNull
@@ -52,6 +57,20 @@ public class Note {
 		return category;
 	}
 
+	@NonNull
+	@CreationTimestamp
+	@Column(name = "CREATED_AT")
+	public Date getNoteCreationDate() {
+		return noteCreationDate;
+	}
+
+	@NonNull
+	@CreationTimestamp
+	@Column(name = "UPDATE_AT")
+	public Date getUpdateNoteCreationDate() {
+		return updateNoteCreationDate;
+	}
+
 	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name= "LOGIN_USER_ID")
 	public LoginUser getLoginUser() {
@@ -63,16 +82,22 @@ public class Note {
 	public NoteList getNoteList() {
 		return noteList;}
 
+	@ManyToOne(cascade = CascadeType.MERGE)
+	@JoinColumn(name = "NOTE_CREATED_DATE_LIST_ID")
+	public NoteCreatedDate getNoteCreatedDateList() {
+		return NoteCreatedDateList;
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
 		if (o == null || getClass() != o.getClass()) return false;
 		Note note = (Note) o;
-		return Objects.equals(noteId, note.noteId) && Objects.equals(title, note.title) && Objects.equals(body, note.body) && Objects.equals(category, note.category) && Objects.equals(noteList, note.noteList) && Objects.equals(loginUser, note.loginUser);
+		return Objects.equals(id, note.id) && Objects.equals(title, note.title) && Objects.equals(body, note.body) && Objects.equals(category, note.category) && Objects.equals(noteList, note.noteList) && Objects.equals(loginUser, note.loginUser) && Objects.equals(noteCreationDate, note.noteCreationDate) && Objects.equals(updateNoteCreationDate, note.updateNoteCreationDate);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(noteId, title, body, category, noteList, loginUser);
+		return Objects.hash(id, title, body, category, noteList, loginUser, noteCreationDate, updateNoteCreationDate);
 	}
 }

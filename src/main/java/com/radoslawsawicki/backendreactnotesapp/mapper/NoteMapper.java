@@ -19,7 +19,7 @@ public class NoteMapper {
 
     public NoteDto mapToNoteDto(final Note note) {
         return new NoteDto(
-                note.getNoteId(),
+                note.getId(),
                 note.getTitle(),
                 note.getBody(),
                 note.getCategory(),

@@ -25,14 +25,9 @@ public class NoteController {
 	public ResponseEntity<List<NoteDto>> getNotes () {
 		List<Note> notes = service.getAllNotes();
 		return ResponseEntity.ok(mapper.mapToNoteDtoList(notes));
+
 	}
 }
-
-
-
-
-
-
 
 
 
