@@ -35,7 +35,7 @@ public class NoteList {
 
 	@OneToMany(
 			targetEntity = Note.class,
-			cascade = {CascadeType.MERGE, CascadeType.PERSIST},
+			cascade = CascadeType.ALL,
 			mappedBy = "noteList",
 			fetch = FetchType.LAZY)
 	public List<Note> getNoteList() {

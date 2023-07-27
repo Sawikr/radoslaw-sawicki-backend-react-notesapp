@@ -20,15 +20,17 @@ public class Note {
 	private String category;
 	private NoteList noteList;
 	private LoginUser loginUser;
-	private Date noteCreationDate;
-	private Date updateNoteCreationDate;
+	private Date createdAt;
+	private Date updatedAt;
 	private NoteCreatedDate NoteCreatedDateList;
 
-	public Note(String title, String body, String category, NoteList noteList) {
+	public Note(String title, String body, String category, Date updatedAt, NoteList noteList, LoginUser loginUser) {
 		this.title = title;
 		this.body = body;
 		this.category = category;
+		this.updatedAt = updatedAt;
 		this.noteList = noteList;
+		this.loginUser = loginUser;
 	}
 
 	@Id
@@ -58,17 +60,17 @@ public class Note {
 	}
 
 	@NonNull
-	@CreationTimestamp
 	@Column(name = "CREATED_AT")
-	public Date getNoteCreationDate() {
-		return noteCreationDate;
+	@CreationTimestamp
+	public Date getCreatedAt() {
+		return createdAt;
 	}
 
 	@NonNull
+	@Column(name = "UPDATED_AT")
 	@CreationTimestamp
-	@Column(name = "UPDATE_AT")
-	public Date getUpdateNoteCreationDate() {
-		return updateNoteCreationDate;
+	public Date getUpdatedAt() {
+		return updatedAt;
 	}
 
 	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -77,12 +79,12 @@ public class Note {
 		return loginUser;
 	}
 
-	@ManyToOne(cascade = CascadeType.MERGE)
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "NOTE_LIST_ID")
 	public NoteList getNoteList() {
 		return noteList;}
 
-	@ManyToOne(cascade = CascadeType.MERGE)
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "NOTE_CREATED_DATE_LIST_ID")
 	public NoteCreatedDate getNoteCreatedDateList() {
 		return NoteCreatedDateList;
@@ -93,11 +95,11 @@ public class Note {
 		if (this == o) return true;
 		if (o == null || getClass() != o.getClass()) return false;
 		Note note = (Note) o;
-		return Objects.equals(id, note.id) && Objects.equals(title, note.title) && Objects.equals(body, note.body) && Objects.equals(category, note.category) && Objects.equals(noteList, note.noteList) && Objects.equals(loginUser, note.loginUser) && Objects.equals(noteCreationDate, note.noteCreationDate) && Objects.equals(updateNoteCreationDate, note.updateNoteCreationDate);
+		return Objects.equals(id, note.id) && Objects.equals(title, note.title) && Objects.equals(body, note.body) && Objects.equals(category, note.category) && Objects.equals(noteList, note.noteList) && Objects.equals(loginUser, note.loginUser) && Objects.equals(createdAt, note.createdAt) && Objects.equals(updatedAt, note.updatedAt);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id, title, body, category, noteList, loginUser, noteCreationDate, updateNoteCreationDate);
+		return Objects.hash(id, title, body, category, noteList, loginUser, createdAt, updatedAt);
 	}
 }

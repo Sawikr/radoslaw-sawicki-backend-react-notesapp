@@ -1,11 +1,18 @@
 package com.radoslawsawicki.backendreactnotesapp.controller;
 
+import com.radoslawsawicki.backendreactnotesapp.domain.LoginUser;
 import com.radoslawsawicki.backendreactnotesapp.domain.Note;
+import com.radoslawsawicki.backendreactnotesapp.domain.NoteList;
 import com.radoslawsawicki.backendreactnotesapp.dto.NoteDto;
 import com.radoslawsawicki.backendreactnotesapp.exception.NoteNotFoundException;
 import com.radoslawsawicki.backendreactnotesapp.mapper.NoteMapper;
+import com.radoslawsawicki.backendreactnotesapp.repository.NoteRepository;
+import com.radoslawsawicki.backendreactnotesapp.service.LoginUserService;
+import com.radoslawsawicki.backendreactnotesapp.service.NoteListService;
 import com.radoslawsawicki.backendreactnotesapp.service.NoteService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,26 +21,31 @@ import java.util.List;
 @CrossOrigin("*")
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/notes")
+@RequestMapping("/api")
 public class NoteController {
 
 	private final NoteMapper mapper;
 	private final NoteService service;
+	private final NoteListService noteListService;
+	private final LoginUserService loginUserService;
 
-	@GetMapping("/")
+	NoteList noteList = new NoteList();
+	LoginUser loginUser = new LoginUser();
+
+	@GetMapping("/notes")
 	public ResponseEntity<List<NoteDto>> getNotes () {
 		List<Note> notes = service.getAllNotes();
 		return ResponseEntity.ok(mapper.mapToNoteDtoList(notes));
 	}
 
-	@GetMapping(value = "{noteId}")
-	public ResponseEntity<NoteDto> getNote(@PathVariable Long noteId) throws NoteNotFoundException {
-		return ResponseEntity.ok(mapper.mapToNoteDto(service.getNote(noteId)));
+	@GetMapping(value = "/notes/{id}")
+	public ResponseEntity<NoteDto> getNote(@PathVariable Long id) throws NoteNotFoundException {
+		return ResponseEntity.ok(mapper.mapToNoteDto(service.getNote(id)));
 	}
 
-	@DeleteMapping(value = "{noteId}")
-	public ResponseEntity<Void> deleteNote(@PathVariable Long noteId) {
-		service.deleteNote(noteId);
+	@DeleteMapping(value = "{id}")
+	public ResponseEntity<Void> deleteNote(@PathVariable Long id) {
+		service.deleteNote(id);
 		return ResponseEntity.ok().build();
 	}
 
@@ -46,7 +58,11 @@ public class NoteController {
 
 	@PostMapping(value = "/notes", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Void> createNote(@RequestBody NoteDto noteDto) {
+		noteList.setListName("List");
+		loginUser.setLoginName("User");
 		Note note = mapper.mapToNote(noteDto);
+		noteListService.saveNoteList(noteList);
+		loginUserService.saveLoginUser(loginUser);
 		service.saveNote(note);
 		return ResponseEntity.ok().build();
 	}
