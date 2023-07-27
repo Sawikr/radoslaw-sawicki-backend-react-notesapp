@@ -6,13 +6,10 @@ import com.radoslawsawicki.backendreactnotesapp.domain.NoteList;
 import com.radoslawsawicki.backendreactnotesapp.dto.NoteDto;
 import com.radoslawsawicki.backendreactnotesapp.exception.NoteNotFoundException;
 import com.radoslawsawicki.backendreactnotesapp.mapper.NoteMapper;
-import com.radoslawsawicki.backendreactnotesapp.repository.NoteRepository;
 import com.radoslawsawicki.backendreactnotesapp.service.LoginUserService;
 import com.radoslawsawicki.backendreactnotesapp.service.NoteListService;
 import com.radoslawsawicki.backendreactnotesapp.service.NoteService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -43,7 +40,7 @@ public class NoteController {
 		return ResponseEntity.ok(mapper.mapToNoteDto(service.getNote(id)));
 	}
 
-	@DeleteMapping(value = "{id}")
+	@DeleteMapping(value = "/notes/{id}")
 	public ResponseEntity<Void> deleteNote(@PathVariable Long id) {
 		service.deleteNote(id);
 		return ResponseEntity.ok().build();
