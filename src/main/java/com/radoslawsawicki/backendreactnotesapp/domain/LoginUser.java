@@ -18,6 +18,11 @@ public class LoginUser {
     private String loginName;
     private boolean isLogin;
 
+    public LoginUser(String loginName, boolean isLogin) {
+        this.loginName = loginName;
+        this.isLogin = isLogin;
+    }
+
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     @NonNull

@@ -26,9 +26,6 @@ public class NoteController {
 	private final NoteListService noteListService;
 	private final LoginUserService loginUserService;
 
-	NoteList noteList = new NoteList();
-	LoginUser loginUser = new LoginUser();
-
 	@GetMapping("/notes")
 	public ResponseEntity<List<NoteDto>> getNotes () {
 		List<Note> notes = service.getAllNotes();
@@ -46,20 +43,20 @@ public class NoteController {
 		return ResponseEntity.ok().build();
 	}
 
-	@PutMapping
+	@PutMapping(value = "/notes", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<NoteDto> updateNote(@RequestBody NoteDto noteDto) {
 		Note note = mapper.mapToNote(noteDto);
-		Note savedNote = service.saveNote(note);
-		return ResponseEntity.ok(mapper.mapToNoteDto(savedNote));
+		service.saveNote(note);
+		return ResponseEntity.ok().build();
 	}
 
 	@PostMapping(value = "/notes", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Void> createNote(@RequestBody NoteDto noteDto) {
-		noteList.setListName("List");
-		loginUser.setLoginName("User");
 		Note note = mapper.mapToNote(noteDto);
-		noteListService.saveNoteList(noteList);
-		loginUserService.saveLoginUser(loginUser);
+		LoginUser loginUser = new LoginUser("User", true);
+		note.setLoginUser(loginUser);
+		NoteList noteList = new NoteList("List");
+		note.setNoteList(noteList);
 		service.saveNote(note);
 		return ResponseEntity.ok().build();
 	}

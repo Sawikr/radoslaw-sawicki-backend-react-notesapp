@@ -22,15 +22,13 @@ public class Note {
 	private LoginUser loginUser;
 	private Date createdAt;
 	private Date updatedAt;
-	private NoteCreatedDate NoteCreatedDateList;
 
-	public Note(String title, String body, String category, Date updatedAt, NoteList noteList, LoginUser loginUser) {
+	public Note(String title, String body, String category, Date createdAt, Date updatedAt) {
 		this.title = title;
 		this.body = body;
 		this.category = category;
+		this.createdAt = createdAt;
 		this.updatedAt = updatedAt;
-		this.noteList = noteList;
-		this.loginUser = loginUser;
 	}
 
 	@Id
@@ -79,16 +77,10 @@ public class Note {
 		return loginUser;
 	}
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "NOTE_LIST_ID")
 	public NoteList getNoteList() {
 		return noteList;}
-
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "NOTE_CREATED_DATE_LIST_ID")
-	public NoteCreatedDate getNoteCreatedDateList() {
-		return NoteCreatedDateList;
-	}
 
 	@Override
 	public boolean equals(Object o) {

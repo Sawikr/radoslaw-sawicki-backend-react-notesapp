@@ -13,9 +13,8 @@ public class NoteMapper {
                 noteDto.getTitle(),
                 noteDto.getBody(),
                 noteDto.getCategory(),
-                noteDto.getUpdatedAt(),
-                noteDto.getNoteList(),
-                noteDto.getLoginUser()
+                noteDto.getCreatedAt(),
+                noteDto.getUpdatedAt()
         );
     }
 
@@ -25,9 +24,8 @@ public class NoteMapper {
                 note.getTitle(),
                 note.getBody(),
                 note.getCategory(),
-                note.getUpdatedAt(),
-                note.getNoteList(),
-                note.getLoginUser()
+                note.getCreatedAt(),
+                note.getUpdatedAt()
         );
     }
 
