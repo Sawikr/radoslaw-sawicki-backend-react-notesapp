@@ -10,6 +10,7 @@ public class NoteMapper {
 
     public Note mapToNote(final NoteDto noteDto) {
         return new Note(
+                noteDto.getId(),
                 noteDto.getTitle(),
                 noteDto.getBody(),
                 noteDto.getCategory(),
