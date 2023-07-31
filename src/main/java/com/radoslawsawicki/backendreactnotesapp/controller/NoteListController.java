@@ -32,20 +32,20 @@ public class NoteListController {
 	}
 
 	@DeleteMapping(value = "/noteLists/{id}")
-	public ResponseEntity<Void> deleteLoginUser(@PathVariable Long id) {
+	public ResponseEntity<Void> deleteNoteList(@PathVariable Long id) {
 		service.deleteNoteList(id);
 		return ResponseEntity.ok().build();
 	}
 
 	@PutMapping(value = "/noteLists", consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<NoteListDto> updateNote(@RequestBody NoteListDto noteListDto) {
+	public ResponseEntity<NoteListDto> updateNoteList(@RequestBody NoteListDto noteListDto) {
 		NoteList noteList = mapper.mapToNoteList(noteListDto);
 		service.saveNoteList(noteList);
 		return ResponseEntity.ok().build();
 	}
 
 	@PostMapping(value = "/noteLists", consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Void> createNote(@RequestBody NoteListDto noteListDto) {
+	public ResponseEntity<Void> createNoteList(@RequestBody NoteListDto noteListDto) {
 		NoteList noteList = mapper.mapToNoteList(noteListDto);
 		service.saveNoteList(noteList);
 		return ResponseEntity.ok().build();

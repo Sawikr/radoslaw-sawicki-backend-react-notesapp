@@ -38,14 +38,14 @@ public class LoginUserController {
 	}
 
 	@PutMapping(value = "/users", consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<LoginUserDto> updateNote(@RequestBody LoginUserDto loginUserDto) {
+	public ResponseEntity<LoginUserDto> updateLoginUser(@RequestBody LoginUserDto loginUserDto) {
 		LoginUser loginUser = mapper.mapToLoginUser(loginUserDto);
 		service.saveLoginUser(loginUser);
 		return ResponseEntity.ok().build();
 	}
 
 	@PostMapping(value = "/users", consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Void> createNote(@RequestBody LoginUserDto loginUserDto) {
+	public ResponseEntity<Void> createLoginUser(@RequestBody LoginUserDto loginUserDto) {
 		LoginUser loginUser = mapper.mapToLoginUser(loginUserDto);
 		service.saveLoginUser(loginUser);
 		return ResponseEntity.ok().build();
