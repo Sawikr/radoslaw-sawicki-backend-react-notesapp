@@ -1,5 +1,6 @@
 package com.radoslawsawicki.backendreactnotesapp.exception;
 
+import com.radoslawsawicki.backendreactnotesapp.currencyapi.exception.CurrencyNotFoundException;
 import com.radoslawsawicki.backendreactnotesapp.weatherapi.exception.WeatherNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,5 +19,10 @@ public class GlobalHttpErrorHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(WeatherNotFoundException.class)
     public ResponseEntity<Object> handleWeatherNotFoundException(WeatherNotFoundException exception) {
         return new ResponseEntity<>("Weather with given id doesn't exist!", HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(CurrencyNotFoundException.class)
+    public ResponseEntity<Object> handleCurrencyNotFoundException(CurrencyNotFoundException exception) {
+        return new ResponseEntity<>("Currency with given id doesn't exist!", HttpStatus.BAD_REQUEST);
     }
 }
