@@ -3,6 +3,8 @@ package com.radoslawsawicki.backendreactnotesapp.currencyapi.controller;
 import com.radoslawsawicki.backendreactnotesapp.currencyapi.domain.Currency;
 import com.radoslawsawicki.backendreactnotesapp.currencyapi.dto.CurrencyDto;
 import com.radoslawsawicki.backendreactnotesapp.currencyapi.exception.CurrencyNotFoundException;
+import com.radoslawsawicki.backendreactnotesapp.currencyapi.exception.CurrencyProcessingException;
+import com.radoslawsawicki.backendreactnotesapp.currencyapi.facade.CurrencyFacade;
 import com.radoslawsawicki.backendreactnotesapp.currencyapi.mapper.CurrencyMapper;
 import com.radoslawsawicki.backendreactnotesapp.currencyapi.service.CurrencyService;
 import lombok.RequiredArgsConstructor;
@@ -19,25 +21,26 @@ public class CurrencyController {
 
     private final CurrencyService service;
     private final CurrencyMapper mapper;
+    private final CurrencyFacade facade;
 
     @GetMapping("/currency/eur")
-    public CurrencyDto getEuroCurrency() {
-        return service.getEURFromNbpApi();
+    public double getEURCurrency() throws CurrencyProcessingException {
+        return facade.processGetCurrencyFromNbpApi("eur");
     }
 
     @GetMapping("/currency/usd")
-    public CurrencyDto getUSDCurrency() {
-        return service.getUSDFromNbpApi();
+    public double getUSDCurrency() throws CurrencyProcessingException {
+        return facade.processGetCurrencyFromNbpApi("usd");
     }
 
     @GetMapping("/currency/chf")
-    public CurrencyDto getCHFCurrency() {
-        return service.getCHFFromNbpApi();
+    public double getCHFCurrency() throws CurrencyProcessingException {
+        return facade.processGetCurrencyFromNbpApi("chf");
     }
 
     @GetMapping("/currency/gbp")
-    public CurrencyDto getGBPCurrency() {
-        return service.getGBPFromNbpApi();
+    public double getGBPCurrency() throws CurrencyProcessingException {
+        return facade.processGetCurrencyFromNbpApi("gbp");
     }
 
     @GetMapping("/currencies")

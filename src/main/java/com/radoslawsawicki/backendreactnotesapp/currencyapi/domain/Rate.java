@@ -37,7 +37,6 @@ public class Rate {
         return effectiveDate;
     }
 
-    @NonNull
     @Column(name = "MID")
     public double getMid() {
         return mid;

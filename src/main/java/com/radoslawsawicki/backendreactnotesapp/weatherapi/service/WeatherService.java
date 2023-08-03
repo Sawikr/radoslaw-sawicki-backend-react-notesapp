@@ -18,6 +18,10 @@ public class WeatherService {
     private final WeatherClient weatherClient;
     private final WeatherRepository repository;
 
+    public WeatherDto getWeather() {
+        return weatherClient.getWeatherForCity("poznan");
+    }
+
     public List<Weather> getAllWeathers() {
         return repository.findAll();
     }
@@ -32,9 +36,5 @@ public class WeatherService {
 
     public void deleteWeather(final Long id) {
         repository.deleteById(id);
-    }
-
-    public WeatherDto getWeather() {
-        return weatherClient.getWeatherForCity("poznan");
     }
 }

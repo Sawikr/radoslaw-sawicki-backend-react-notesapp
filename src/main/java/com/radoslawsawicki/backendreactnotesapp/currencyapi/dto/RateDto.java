@@ -1,6 +1,7 @@
 package com.radoslawsawicki.backendreactnotesapp.currencyapi.dto;
 
 import com.fasterxml.jackson.annotation.*;
+import com.radoslawsawicki.backendreactnotesapp.currencyapi.domain.Currency;
 import com.radoslawsawicki.backendreactnotesapp.currencyapi.domain.Rate;
 import lombok.*;
 import java.util.ArrayList;
@@ -19,7 +20,7 @@ public class RateDto {
     private String effectiveDate;
 
     @JsonProperty("mid")
-    private Double mid;
+    private double mid;
 
     @JsonIgnore
     private List<Rate> additionalProperties = new ArrayList<>();

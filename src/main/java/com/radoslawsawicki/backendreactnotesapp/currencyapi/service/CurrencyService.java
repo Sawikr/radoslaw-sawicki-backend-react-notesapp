@@ -4,6 +4,7 @@ import com.radoslawsawicki.backendreactnotesapp.currencyapi.client.CurrencyClien
 import com.radoslawsawicki.backendreactnotesapp.currencyapi.domain.Currency;
 import com.radoslawsawicki.backendreactnotesapp.currencyapi.dto.CurrencyDto;
 import com.radoslawsawicki.backendreactnotesapp.currencyapi.exception.CurrencyNotFoundException;
+import com.radoslawsawicki.backendreactnotesapp.currencyapi.facade.CurrencyCode;
 import com.radoslawsawicki.backendreactnotesapp.currencyapi.repository.CurrencyRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -22,31 +23,33 @@ public class CurrencyService {
         return repository.findAll();
     }
 
+    public double getCurrencyFromNbpApi(String code) {
+        CurrencyDto result = null;
+        CurrencyCode currencyName = CurrencyCode.INSTANCE;
+        if (currencyName.setCurrency("eur").equals(code)) {
+            result = currencyClient.getExchangeRates(code);
+        }
+        else if (currencyName.setCurrency("usd").equals(code)) {
+            result = currencyClient.getExchangeRates(code);
+        }
+        else if (currencyName.setCurrency("chf").equals(code)) {
+            result = currencyClient.getExchangeRates(code);
+        }
+        else
+            result = currencyClient.getExchangeRates(code);
+
+        return result.getRates().get(0).getMid();
+    }
+
     public Currency getCurrency(final Long noteId) throws CurrencyNotFoundException {
         return repository.findById(noteId).orElseThrow(CurrencyNotFoundException::new);
     }
 
-    public Currency saveCurrency(final Currency currency) {
-        return repository.save(currency);
+    public void saveCurrency(final Currency currency) {
+        repository.save(currency);
     }
 
     public void deleteCurrency(final Long id) {
         repository.deleteById(id);
-    }
-
-    public CurrencyDto getEURFromNbpApi() {
-        return currencyClient.getExchangeRates("eur");
-    }
-
-    public CurrencyDto getUSDFromNbpApi() {
-        return currencyClient.getExchangeRates("usd");
-    }
-
-    public CurrencyDto getCHFFromNbpApi() {
-        return currencyClient.getExchangeRates("chf");
-    }
-
-    public CurrencyDto getGBPFromNbpApi() {
-        return currencyClient.getExchangeRates("gbp");
     }
 }

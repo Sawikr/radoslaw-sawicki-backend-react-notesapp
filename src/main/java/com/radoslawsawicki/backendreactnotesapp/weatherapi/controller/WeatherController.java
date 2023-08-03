@@ -3,6 +3,8 @@ package com.radoslawsawicki.backendreactnotesapp.weatherapi.controller;
 import com.radoslawsawicki.backendreactnotesapp.weatherapi.domain.Weather;
 import com.radoslawsawicki.backendreactnotesapp.weatherapi.dto.WeatherDto;
 import com.radoslawsawicki.backendreactnotesapp.weatherapi.exception.WeatherNotFoundException;
+import com.radoslawsawicki.backendreactnotesapp.weatherapi.exception.WeatherProcessingException;
+import com.radoslawsawicki.backendreactnotesapp.weatherapi.facade.WeatherFacade;
 import com.radoslawsawicki.backendreactnotesapp.weatherapi.mapper.WeatherMapper;
 import com.radoslawsawicki.backendreactnotesapp.weatherapi.service.WeatherService;
 import lombok.RequiredArgsConstructor;
@@ -10,6 +12,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
+import java.util.Optional;
 
 @CrossOrigin("*")
 @RestController
@@ -19,10 +22,11 @@ public class WeatherController {
 
     private final WeatherService service;
     private final WeatherMapper mapper;
+    private final WeatherFacade facade;
 
     @GetMapping("/weather")
-    public WeatherDto getWeather() {
-        return service.getWeather();
+    public Optional<WeatherDto> getWeather() throws WeatherProcessingException {
+        return facade.processGetWeather();
     }
 
     @GetMapping("/weather/list")
