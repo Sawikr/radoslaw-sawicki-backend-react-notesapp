@@ -1,9 +1,14 @@
 package com.radoslawsawicki.backendreactnotesapp.currencyapi.domain;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.Setter;
+import org.springframework.stereotype.Component;
 import java.util.Objects;
 
+@Component
 @Getter
 @Setter
 @Entity
@@ -16,6 +21,13 @@ public class Rate {
     private String effectiveDate;
     private double mid;
     private Currency currency;
+
+    public Rate(String no, String effectiveDate, double mid, Currency currency) {
+        this.no = no;
+        this.effectiveDate = effectiveDate;
+        this.mid = mid;
+        this.currency = currency;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

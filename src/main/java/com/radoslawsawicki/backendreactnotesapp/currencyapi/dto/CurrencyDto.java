@@ -25,7 +25,7 @@ public class CurrencyDto {
     @JsonProperty("rates")
     private List<Rate> rates;
 
-    public CurrencyDto(String table, String currency, String code, List<Rate> rates) {
+    public CurrencyDto(String code, String currency, String table, List<Rate> rates) {
         this.table = table;
         this.currency = currency;
         this.code = code;

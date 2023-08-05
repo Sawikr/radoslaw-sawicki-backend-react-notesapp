@@ -2,8 +2,12 @@ package com.radoslawsawicki.backendreactnotesapp.weatherapi.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.stereotype.Component;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
+@Component
 @Getter
 @Setter
 @RequiredArgsConstructor
@@ -17,6 +21,7 @@ public class Weather {
     private int pressure;
     private int humidity;
     private float windSpeed;
+    private LocalDateTime createdAt;
 
     public Weather(float temperature, int pressure, int humidity, float windSpeed) {
         this.temperature = temperature;
@@ -55,6 +60,13 @@ public class Weather {
     @Column(name = "WINDSPEED")
     public float getWindSpeed() {
         return windSpeed;
+    }
+
+    @NonNull
+    @Column(name = "CREATED_AT")
+    @CreationTimestamp
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
     }
 
     @Override

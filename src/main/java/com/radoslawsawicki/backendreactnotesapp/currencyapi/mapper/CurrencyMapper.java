@@ -10,17 +10,17 @@ public class CurrencyMapper {
 
     public Currency mapToCurrency(final CurrencyDto currencyDto) {
         return new Currency(
+                currencyDto.getCode(),
                 currencyDto.getCurrency(),
                 currencyDto.getTable(),
-                currencyDto.getCode(),
                 currencyDto.getRates()
         );
     }
 
     public CurrencyDto mapToCurrencyDto(final Currency currency) {
         return new CurrencyDto(
-                currency.getCurrency(),
                 currency.getCode(),
+                currency.getCurrency(),
                 currency.getTable(),
                 currency.getRates()
         );

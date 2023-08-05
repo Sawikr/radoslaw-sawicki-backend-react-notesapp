@@ -3,6 +3,7 @@ package com.radoslawsawicki.backendreactnotesapp.weatherapi.mapper;
 import com.radoslawsawicki.backendreactnotesapp.weatherapi.domain.Weather;
 import com.radoslawsawicki.backendreactnotesapp.weatherapi.dto.WeatherDto;
 import org.springframework.stereotype.Service;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -22,7 +23,8 @@ public class WeatherMapper {
                 weather.getTemperature(),
                 weather.getPressure(),
                 weather.getHumidity(),
-                weather.getWindSpeed()
+                weather.getWindSpeed(),
+                weather.getCreatedAt()
         );
     }
 

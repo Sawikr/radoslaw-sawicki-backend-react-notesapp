@@ -22,14 +22,24 @@ public class WeatherFacade {
     }
 
     public Optional<WeatherDto> processGetWeather() throws WeatherProcessingException {
-
         Optional<WeatherDto> result = Optional.ofNullable(service.getWeather());
         boolean wasError = false;
         if (result.isEmpty()) {
             LOGGER.error(WeatherProcessingException.DATA_ERROR);
             wasError = true;
-            throw new WeatherProcessingException(CurrencyProcessingException.DATA_ERROR);
+            throw new WeatherProcessingException(WeatherProcessingException.DATA_ERROR);
         }
         return result;
+    }
+
+    public WeatherDto processGetWeatherScheduler() throws WeatherProcessingException {
+        Optional<WeatherDto> result = Optional.ofNullable(service.getWeather());
+        boolean wasError = false;
+        if (result.isEmpty()) {
+            LOGGER.error(WeatherProcessingException.DATA_ERROR);
+            wasError = true;
+            throw new WeatherProcessingException(WeatherProcessingException.DATA_ERROR);
+        }
+        return result.orElseThrow();
     }
 }

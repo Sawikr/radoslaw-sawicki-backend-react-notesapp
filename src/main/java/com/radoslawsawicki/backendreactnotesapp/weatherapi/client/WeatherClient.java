@@ -4,6 +4,7 @@ import com.radoslawsawicki.backendreactnotesapp.weatherapi.dto.OpenWeatherWeathe
 import com.radoslawsawicki.backendreactnotesapp.weatherapi.dto.WeatherDto;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
+import java.time.LocalDateTime;
 
 @Component
 public class WeatherClient {
@@ -21,6 +22,7 @@ public class WeatherClient {
                 .pressure(openWeatherWeatherDto.getMain().getPressure())
                 .humidity(openWeatherWeatherDto.getMain().getHumidity())
                 .windSpeed(openWeatherWeatherDto.getWind().getSpeed())
+                .createdAt(LocalDateTime.now())
                 .build();
     }
 
