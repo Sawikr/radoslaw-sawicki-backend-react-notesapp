@@ -3,6 +3,7 @@ package com.radoslawsawicki.backendreactnotesapp.domain;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
@@ -20,10 +21,10 @@ public class Note {
 	private String category;
 	private NoteList noteList;
 	private LoginUser loginUser;
-	private LocalDateTime createdAt;
-	private LocalDateTime updatedAt;
+	private LocalDate createdAt;
+	private LocalDate updatedAt;
 
-	public Note(Long id, String title, String body, String category, LocalDateTime createdAt, LocalDateTime updatedAt) {
+	public Note(Long id, String title, String body, String category, LocalDate createdAt, LocalDate updatedAt) {
 		this.id = id;
 		this.title = title;
 		this.body = body;
@@ -61,14 +62,14 @@ public class Note {
 	@NonNull
 	@Column(name = "CREATED_AT")
 	@CreationTimestamp
-	public LocalDateTime getCreatedAt() {
+	public LocalDate getCreatedAt() {
 		return createdAt;
 	}
 
 	@NonNull
 	@Column(name = "UPDATED_AT")
 	@CreationTimestamp
-	public LocalDateTime getUpdatedAt() {
+	public LocalDate getUpdatedAt() {
 		return updatedAt;
 	}
 

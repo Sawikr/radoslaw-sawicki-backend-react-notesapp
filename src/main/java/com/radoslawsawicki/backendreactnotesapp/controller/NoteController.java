@@ -12,7 +12,7 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 
 @CrossOrigin("*")
@@ -45,7 +45,8 @@ public class NoteController {
 	@PutMapping(value = "/notes", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<NoteDto> updateNote(@RequestBody NoteDto noteDto) {
 		Note note = getNote(noteDto);
-		note.setUpdatedAt(LocalDateTime.now());
+		note.setUpdatedAt(LocalDate.now());
+		service.saveNote(note);
 		return ResponseEntity.ok().build();
 	}
 
