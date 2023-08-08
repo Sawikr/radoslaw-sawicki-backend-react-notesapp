@@ -44,7 +44,7 @@ public class NoteController {
 	@PutMapping(value = "/notes", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<NoteDto> updateNote(@RequestBody NoteDto noteDto) {
 		Note note = config.getNote(noteDto);
-        note.setUpdatedAt(config.getCorrectDate());
+    note.setUpdatedAt(config.getCorrectDate());
 		service.saveNote(note);
 		return ResponseEntity.ok().build();
 	}
