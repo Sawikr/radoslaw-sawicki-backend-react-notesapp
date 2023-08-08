@@ -20,10 +20,10 @@ public class Note {
 	private String category;
 	private NoteList noteList;
 	private LoginUser loginUser;
-	private LocalDateTime createdAt;
+	private ZonedDateTime createdAt;
 	private ZonedDateTime updatedAt;
 
-	public Note(Long id, String title, String body, String category, LocalDateTime createdAt, ZonedDateTime updatedAt) {
+	public Note(Long id, String title, String body, String category, ZonedDateTime createdAt, ZonedDateTime updatedAt) {
 		this.id = id;
 		this.title = title;
 		this.body = body;
@@ -61,7 +61,7 @@ public class Note {
 	@NonNull
 	@Column(name = "CREATED_AT")
 	@CreationTimestamp
-	public LocalDateTime getCreatedAt() {
+	public ZonedDateTime getCreatedAt() {
 		return createdAt;
 	}
 
