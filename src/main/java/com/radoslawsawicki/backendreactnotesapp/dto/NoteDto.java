@@ -2,7 +2,7 @@ package com.radoslawsawicki.backendreactnotesapp.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import java.time.LocalDate;
+import java.time.*;
 
 @Getter
 @AllArgsConstructor
@@ -12,7 +12,7 @@ public class NoteDto {
     private String title;
     private String body;
     private String category;
-    private LocalDate createdAt;
-    private LocalDate updatedAt;
+    private LocalDateTime createdAt;
+    private ZonedDateTime updatedAt;
 
 }

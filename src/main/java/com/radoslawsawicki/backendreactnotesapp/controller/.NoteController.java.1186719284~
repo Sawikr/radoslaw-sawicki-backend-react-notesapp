@@ -7,14 +7,17 @@ import com.radoslawsawicki.backendreactnotesapp.dto.NoteDto;
 import com.radoslawsawicki.backendreactnotesapp.exception.NoteNotFoundException;
 import com.radoslawsawicki.backendreactnotesapp.mapper.NoteMapper;
 import com.radoslawsawicki.backendreactnotesapp.service.NoteService;
-//import com.radoslawsawicki.backendreactnotesapp.noteconfig.NoteServiceConfig;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
-import java.time.*;
+import java.time.ZoneId;
+import java.time.ZoneOffset;
+import java.time.ZonedDateTime;
 
 @CrossOrigin("*")
 @RestController
@@ -25,7 +28,6 @@ public class NoteController {
 
 	private final NoteMapper mapper;
 	private final NoteService service;
-  //private final NoteServiceConfig config;
 
 	@GetMapping("/notes")
 	public ResponseEntity<List<NoteDto>> getNotes () {
@@ -47,21 +49,21 @@ public class NoteController {
 	@PutMapping(value = "/notes", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<NoteDto> updateNote(@RequestBody NoteDto noteDto) {
 		Note note = getNote(noteDto);
-    note.setUpdatedAt(getCorrectDate());
+		//note.setUpdatedAt(LocalDateTime.now(ZoneId.of("Europe/Warsaw")));
+    note.setUpdatedAt(ZonedDateTime.now(ZoneId.of("Europe/Warsaw")));
 		service.saveNote(note);
 		return ResponseEntity.ok().build();
 	}
 
 	@PostMapping(value = "/notes", consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<NoteDto> createNote(@RequestBody NoteDto noteDto) {
-    Note note = getNote(noteDto);
-	  note.setUpdatedAt(getCorrectDate());
-		service.saveNote(note);  
+	public ResponseEntity<Void> createNote(@RequestBody NoteDto noteDto) {
+		getNote(noteDto);
 		return ResponseEntity.ok().build();
 	}
 
 	private Note getNote(NoteDto noteDto) {
 		Note note = mapper.mapToNote(noteDto);
+    note.setUpdatedAt(ZonedDateTime.now(ZoneOffset.of("-02:00")));
     LoginUser loginUser = new LoginUser("User", true);
 		note.setLoginUser(loginUser);
 		NoteList noteList = new NoteList("List");
@@ -70,11 +72,9 @@ public class NoteController {
 		return note;
 	}
 
-  private ZonedDateTime getCorrectDate(){
-    LocalDateTime ldt = LocalDateTime.now(); 
-    ZoneId warsaw = ZoneId.of("Europe/Warsaw"); 
-    ZonedDateTime dateWarsaw = ZonedDateTime.of(ldt, warsaw);
-    ZonedDateTime newDateWarsaw = dateWarsaw.plusHours(4);
-    return newDateWarsaw;
+  private ZonedDateTime getDate(){
+    LocalDateTime now = LocalDateTime.now();
+    ZonedDateTime offSetNegative5 = now.atOffset(ZoneOffset.of("-02:00")).toZonedDateTime();
+    return offSetNegative5;
   }
 }
