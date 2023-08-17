@@ -6,6 +6,7 @@ import com.radoslawsawicki.backendreactnotesapp.mail.dto.MailDto;
 import com.radoslawsawicki.backendreactnotesapp.mail.mapper.MailMapper;
 import com.radoslawsawicki.backendreactnotesapp.mail.service.SimpleMailService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +15,7 @@ import java.util.List;
 @CrossOrigin("*")
 @RestController
 @RequiredArgsConstructor
+@EnableAspectJAutoProxy
 @RequestMapping("/api")
 public class MailController {
 
