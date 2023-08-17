@@ -1,18 +1,12 @@
 package com.radoslawsawicki.backendreactnotesapp.service;
 
-import com.radoslawsawicki.backendreactnotesapp.exception.NoteNotFoundException;
-import com.radoslawsawicki.backendreactnotesapp.repository.NoteRepository;
-import com.radoslawsawicki.backendreactnotesapp.domain.LoginUser;
 import com.radoslawsawicki.backendreactnotesapp.domain.Note;
-import com.radoslawsawicki.backendreactnotesapp.domain.NoteList;
-import com.radoslawsawicki.backendreactnotesapp.dto.NoteDto;
 import com.radoslawsawicki.backendreactnotesapp.exception.NoteNotFoundException;
 import com.radoslawsawicki.backendreactnotesapp.mapper.NoteMapper;
-import com.radoslawsawicki.backendreactnotesapp.service.NoteService;
+import com.radoslawsawicki.backendreactnotesapp.repository.NoteRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import java.util.List;
-import java.time.*;
 
 @Service
 @RequiredArgsConstructor

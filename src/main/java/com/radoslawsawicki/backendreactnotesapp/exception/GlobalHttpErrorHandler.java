@@ -25,4 +25,9 @@ public class GlobalHttpErrorHandler extends ResponseEntityExceptionHandler {
     public ResponseEntity<Object> handleCurrencyNotFoundException(CurrencyNotFoundException exception) {
         return new ResponseEntity<>("Currency with given id doesn't exist!", HttpStatus.BAD_REQUEST);
     }
+
+    @ExceptionHandler(MailNotFoundException.class)
+    public ResponseEntity<Object> handleCurrencyNotFoundException(MailNotFoundException exception) {
+        return new ResponseEntity<>("Email with given id doesn't exist!", HttpStatus.BAD_REQUEST);
+    }
 }
