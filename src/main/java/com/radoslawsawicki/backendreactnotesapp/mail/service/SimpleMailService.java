@@ -1,6 +1,7 @@
 package com.radoslawsawicki.backendreactnotesapp.mail.service;
 
 import com.radoslawsawicki.backendreactnotesapp.exception.MailNotFoundException;
+import com.radoslawsawicki.backendreactnotesapp.mail.config.MailConfig;
 import com.radoslawsawicki.backendreactnotesapp.mail.domain.Mail;
 import com.radoslawsawicki.backendreactnotesapp.mail.repository.MailRepository;
 import lombok.RequiredArgsConstructor;
@@ -18,6 +19,7 @@ public class SimpleMailService {
 
     private final JavaMailSender javaMailSender;
     private final MailRepository repository;
+    private final MailConfig config;
 
     public void send(final Mail mail) {
         log.info("Starting email preparation...");
@@ -38,13 +40,13 @@ public class SimpleMailService {
         return repository.findById(emailId).orElseThrow(MailNotFoundException::new);
     }
 
-    public Mail saveEmail(final Mail mail) {
-        return repository.save(mail);
+    public void saveEmail(final Mail mail) {
+        repository.save(mail);
     }
 
     private SimpleMailMessage createMailMessage(final Mail mail) {
         SimpleMailMessage mailMessage = new SimpleMailMessage();
-        mailMessage.setFrom("sawikr10@gmail.com");
+        mailMessage.setFrom(config.getAdminMail());
         mailMessage.setTo(mail.getEmail());
         mailMessage.setText(mail.getBody());
         mailMessage.setSubject(mail.getTitle());
