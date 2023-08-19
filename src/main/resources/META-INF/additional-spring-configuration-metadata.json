@@ -4,5 +4,35 @@
       "name": "admin.mail",
       "type": "java.lang.String",
       "description": "Description for admin.mail."
+    },
+    {
+      "name": "keycloak.realm",
+      "type": "java.lang.String",
+      "description": "Description for keycloak.realm."
+    },
+    {
+      "name": "keycloak.resource",
+      "type": "java.lang.String",
+      "description": "Description for keycloak.resource."
+    },
+    {
+      "name": "keycloak.auth-server-url",
+      "type": "java.lang.String",
+      "description": "Description for keycloak.auth-server-url."
+    },
+    {
+      "name": "keycloak.ssl-required",
+      "type": "java.lang.String",
+      "description": "Description for keycloak.ssl-required."
+    },
+    {
+      "name": "keycloak.public-client",
+      "type": "java.lang.String",
+      "description": "Description for keycloak.public-client."
+    },
+    {
+      "name": "keycloak.principal-attribute",
+      "type": "java.lang.String",
+      "description": "Description for keycloak.principal-attribute."
     }
   ] }
