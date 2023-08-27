@@ -17,6 +17,12 @@ public class Mail {
     private String title;
     private String body;
 
+    public Mail(String email, String title, String body) {
+        this.email = email;
+        this.title = title;
+        this.body = body;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @NonNull

@@ -22,11 +22,10 @@ public class Rate {
     private double mid;
     private Currency currency;
 
-    public Rate(String no, String effectiveDate, double mid, Currency currency) {
+    public Rate(String no, String effectiveDate, double mid) {
         this.no = no;
         this.effectiveDate = effectiveDate;
         this.mid = mid;
-        this.currency = currency;
     }
 
     @Id
@@ -54,7 +53,7 @@ public class Rate {
         return mid;
     }
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "CURRENCY_ID")
     public Currency getCurrency() {
         return currency;

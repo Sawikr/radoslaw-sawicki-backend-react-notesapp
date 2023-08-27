@@ -1,6 +1,7 @@
 package com.radoslawsawicki.backendreactnotesapp.domain;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -9,6 +10,7 @@ import java.util.Objects;
 @Getter
 @Setter
 @RequiredArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name="NOTE_LISTS")
 public class NoteList {

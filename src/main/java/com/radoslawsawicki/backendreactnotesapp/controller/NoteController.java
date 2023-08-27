@@ -2,6 +2,8 @@ package com.radoslawsawicki.backendreactnotesapp.controller;
 
 import com.radoslawsawicki.backendreactnotesapp.domain.Note;
 import com.radoslawsawicki.backendreactnotesapp.dto.NoteDto;
+import com.radoslawsawicki.backendreactnotesapp.exception.LoginUserNotFoundException;
+import com.radoslawsawicki.backendreactnotesapp.exception.NoteListNotFoundException;
 import com.radoslawsawicki.backendreactnotesapp.exception.NoteNotFoundException;
 import com.radoslawsawicki.backendreactnotesapp.mapper.NoteMapper;
 import com.radoslawsawicki.backendreactnotesapp.noteconfig.NoteServiceConfig;
@@ -42,18 +44,16 @@ public class NoteController {
 	}
 
 	@PutMapping(value = "/notes", consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<NoteDto> updateNote(@RequestBody NoteDto noteDto) {
+	public ResponseEntity<NoteDto> updateNote(@RequestBody NoteDto noteDto) throws LoginUserNotFoundException, NoteListNotFoundException {
 		Note note = config.getNote(noteDto);
-    	note.setUpdatedAt(config.getCorrectDate());
 		service.saveNote(note);
 		return ResponseEntity.ok().build();
 	}
 
 	@PostMapping(value = "/notes", consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<NoteDto> createNote(@RequestBody NoteDto noteDto) {
+	public ResponseEntity<NoteDto> createNote(@RequestBody NoteDto noteDto) throws LoginUserNotFoundException, NoteListNotFoundException {
 		Note note = config.getNote(noteDto);
-		note.setUpdatedAt(config.getCorrectDate());
-		service.saveNote(note);  
+		service.saveNote(note);
 		return ResponseEntity.ok().build();
 	}
 }

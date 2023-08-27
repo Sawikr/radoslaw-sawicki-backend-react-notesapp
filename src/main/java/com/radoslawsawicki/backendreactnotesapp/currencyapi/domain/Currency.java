@@ -56,7 +56,7 @@ public class Currency {
     @OneToMany(
             targetEntity = Rate.class,
             mappedBy = "currency",
-            cascade = CascadeType.ALL,
+            cascade = CascadeType.MERGE,
             fetch = FetchType.LAZY)
     public List<Rate> getRates() {
         return rates;

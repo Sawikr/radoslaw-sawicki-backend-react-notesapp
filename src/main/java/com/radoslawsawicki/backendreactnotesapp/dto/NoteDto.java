@@ -2,7 +2,7 @@ package com.radoslawsawicki.backendreactnotesapp.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import java.time.*;
+import java.time.ZonedDateTime;
 
 @Getter
 @AllArgsConstructor
@@ -14,5 +14,4 @@ public class NoteDto {
     private String category;
     private ZonedDateTime createdAt;
     private ZonedDateTime updatedAt;
-
 }

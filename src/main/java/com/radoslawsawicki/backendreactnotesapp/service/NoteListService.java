@@ -21,6 +21,10 @@ public class NoteListService {
         return repository.findById(noteListId).orElseThrow(NoteListNotFoundException::new);
     }
 
+    public NoteList getNoteList() throws NoteListNotFoundException {
+        return repository.findById(repository.findAll().stream().findFirst().orElseThrow().getNoteListId()).orElseThrow(NoteListNotFoundException::new);
+    }
+
     public NoteList saveNoteList(final NoteList noteList) {
         return repository.save(noteList);
     }

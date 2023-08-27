@@ -10,6 +10,7 @@ public class NoteListMapper {
 
     public NoteList mapToNoteList(final NoteListDto noteListDto) {
         return new NoteList(
+                noteListDto.getNoteListId(),
                 noteListDto.getListName()
         );
     }
