@@ -78,7 +78,7 @@ public class Note {
 		return loginUser;
 	}
 
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "NOTE_LIST_ID")
 	public NoteList getNoteList() {
 		return noteList;}

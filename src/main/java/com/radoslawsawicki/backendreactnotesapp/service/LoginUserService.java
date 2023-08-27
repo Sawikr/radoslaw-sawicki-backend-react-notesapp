@@ -21,10 +21,6 @@ public class LoginUserService {
         return repository.findById(loginUserId).orElseThrow(LoginUserNotFoundException::new);
     }
 
-    public LoginUser getLoginUser() throws LoginUserNotFoundException {
-        return repository.findById(repository.findAll().stream().findFirst().orElseThrow().getLoginUserId()).orElseThrow(LoginUserNotFoundException::new);
-    }
-
     public LoginUser saveLoginUser(final LoginUser loginUser) {
         return repository.save(loginUser);
     }

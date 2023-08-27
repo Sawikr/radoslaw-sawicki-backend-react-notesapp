@@ -28,37 +28,23 @@ public class NoteServiceConfig {
         Note note = mapper.mapToNote(noteDto);
         List<LoginUser> loginUserList = loginUserService.getAllLoginUsers();
         loginUser(note, loginUserList);
-
         List<NoteList> noteListList = noteListService.getAllNoteLists();
         noteList(note,noteListList);
-
         note.setUpdatedAt(getCorrectDate());
         return note;
     }
 
-    private void loginUser(Note note, List<LoginUser> loginUserList) throws LoginUserNotFoundException {
-        LoginUser loginUser;
-        if (!loginUserList.isEmpty()) {
-            loginUser = loginUserList.get(loginUserList.size() - 1);
-        } else {
-            loginUser = loginUserService.getLoginUser();
-            loginUserService.saveLoginUser(loginUser);
-        }
+    private void loginUser(Note note, List<LoginUser> loginUserList) {
+        LoginUser loginUser = loginUserList.stream().reduce((first, second) -> second).orElseThrow();
         note.setLoginUser(loginUser);
     }
 
-    private void noteList(Note note, List<NoteList> noteListList) throws NoteListNotFoundException {
-        NoteList noteList;
-        if (!noteListList.isEmpty()) {
-            noteList = noteListList.get(noteListList.size() - 1);
-        } else {
-            noteList = noteListService.getNoteList();
-            noteListService.saveNoteList(noteList);
-        }
+    private void noteList(Note note, List<NoteList> noteListList) {
+        NoteList noteList = noteListList.stream().reduce((first, second) -> second).orElseThrow();
         note.setNoteList(noteList);
     }
 
-    public ZonedDateTime getCorrectDate(){
+    public ZonedDateTime getCorrectDate() {
         LocalDateTime ldt = LocalDateTime.now(); 
         ZoneId warsaw = ZoneId.of("Europe/Warsaw"); 
         ZonedDateTime dateWarsaw = ZonedDateTime.of(ldt, warsaw);
