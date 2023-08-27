@@ -4,8 +4,6 @@ import com.radoslawsawicki.backendreactnotesapp.domain.LoginUser;
 import com.radoslawsawicki.backendreactnotesapp.domain.Note;
 import com.radoslawsawicki.backendreactnotesapp.domain.NoteList;
 import com.radoslawsawicki.backendreactnotesapp.dto.NoteDto;
-import com.radoslawsawicki.backendreactnotesapp.exception.LoginUserNotFoundException;
-import com.radoslawsawicki.backendreactnotesapp.exception.NoteListNotFoundException;
 import com.radoslawsawicki.backendreactnotesapp.mapper.NoteMapper;
 import com.radoslawsawicki.backendreactnotesapp.service.LoginUserService;
 import com.radoslawsawicki.backendreactnotesapp.service.NoteListService;
@@ -24,7 +22,7 @@ public class NoteServiceConfig {
     private final LoginUserService loginUserService;
     private final NoteListService noteListService;
 
-    public Note getNote(NoteDto noteDto) throws LoginUserNotFoundException, NoteListNotFoundException {
+    public Note getNote(NoteDto noteDto) {
         Note note = mapper.mapToNote(noteDto);
         List<LoginUser> loginUserList = loginUserService.getAllLoginUsers();
         loginUser(note, loginUserList);
