@@ -34,5 +34,35 @@
       "name": "keycloak.principal-attribute",
       "type": "java.lang.String",
       "description": "Description for keycloak.principal-attribute."
+    },
+    {
+      "name": "currency_url.api.endpoint",
+      "type": "java.lang.String",
+      "description": "Description for currency_url.api.endpoint."
+    },
+    {
+      "name": "format_json.api.endpoint",
+      "type": "java.lang.String",
+      "description": "Description for format_json.api.endpoint."
+    },
+    {
+      "name": "weather_url.api.endpoint",
+      "type": "java.lang.String",
+      "description": "Description for weather_url.api.endpoint."
+    },
+    {
+      "name": "weather_api_key.api.endpoint",
+      "type": "java.lang.String",
+      "description": "Description for weather_api_key.api.endpoint."
+    },
+    {
+      "name": "weather_url_get_weather_for_city.api.endpoint",
+      "type": "java.lang.String",
+      "description": "Description for weather_url_get_weather_for_city.api.endpoint."
+    },
+    {
+      "name": "weather_url_get_forecast.api.endpoint",
+      "type": "java.lang.String",
+      "description": "Description for weather_url_get_forecast.api.endpoint."
     }
   ] }
