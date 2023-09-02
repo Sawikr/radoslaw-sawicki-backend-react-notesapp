@@ -22,7 +22,10 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import java.time.*;
 import java.util.List;
-import static org.mockito.Mockito.when;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.times;
 
 @SpringJUnitWebConfig
 @WebMvcTest(NoteController.class)
@@ -95,10 +98,12 @@ class NoteControllerTestSuite {
         //Given
         log.info("Starting test: shouldFetchDeleteNote");
 
-        Note note = getNote();
-        NoteDto noteDto = getNoteDto();
-
-        when(mapper.mapToNoteDto(note)).thenReturn(noteDto);
+        doAnswer(invocation -> {
+            long id = invocation.getArgument(0);
+            System.out.println("Called for id: " + id);
+            assertEquals(1L, id);
+            return null;
+        }).when(service).deleteNote(anyLong());
 
         //When & Then
         mockMvc
@@ -106,6 +111,8 @@ class NoteControllerTestSuite {
                         .delete("/api/notes/1")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk());
+
+        verify(service, times(1)).deleteNote(1L);
     }
 
     @Test

@@ -19,7 +19,11 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import java.util.List;
-import static org.mockito.Mockito.when;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.times;
 
 @SpringJUnitWebConfig
 @WebMvcTest(NoteListController.class)
@@ -87,10 +91,12 @@ class NoteListControllerTestSuite {
         //Given
         log.info("Starting test: shouldFetchDeleteNoteList");
 
-        NoteList noteList = new NoteList(1L, "TestList");
-        NoteListDto noteListDto = new NoteListDto(1L, "TestList");
-
-        when(mapper.mapToNoteListDto(noteList)).thenReturn(noteListDto);
+        doAnswer(invocation -> {
+            long id = invocation.getArgument(0);
+            System.out.println("Called for id: " + id);
+            assertEquals(1L, id);
+            return null;
+        }).when(service).deleteNoteList(anyLong());
 
         //When & Then
         mockMvc
@@ -98,6 +104,8 @@ class NoteListControllerTestSuite {
                         .delete("/api/noteLists/1")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk());
+
+        verify(service, times(1)).deleteNoteList(1L);
     }
 
     @Test
