@@ -30,6 +30,14 @@ public class Weather {
         this.windSpeed = windSpeed;
     }
 
+    public Weather(float temperature, int pressure, int humidity, float windSpeed, LocalDateTime createdAt) {
+        this.temperature = temperature;
+        this.pressure = pressure;
+        this.humidity = humidity;
+        this.windSpeed = windSpeed;
+        this.createdAt = createdAt;
+    }
+
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     @NonNull

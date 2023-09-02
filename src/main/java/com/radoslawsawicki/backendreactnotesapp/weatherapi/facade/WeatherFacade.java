@@ -1,6 +1,5 @@
 package com.radoslawsawicki.backendreactnotesapp.weatherapi.facade;
 
-import com.radoslawsawicki.backendreactnotesapp.currencyapi.exception.CurrencyProcessingException;
 import com.radoslawsawicki.backendreactnotesapp.weatherapi.dto.WeatherDto;
 import com.radoslawsawicki.backendreactnotesapp.weatherapi.exception.WeatherProcessingException;
 import com.radoslawsawicki.backendreactnotesapp.weatherapi.service.WeatherService;

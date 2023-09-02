@@ -4,8 +4,6 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.radoslawsawicki.backendreactnotesapp.domain.Note;
 import com.radoslawsawicki.backendreactnotesapp.dto.NoteDto;
-import com.radoslawsawicki.backendreactnotesapp.exception.LoginUserNotFoundException;
-import com.radoslawsawicki.backendreactnotesapp.exception.NoteListNotFoundException;
 import com.radoslawsawicki.backendreactnotesapp.exception.NoteNotFoundException;
 import com.radoslawsawicki.backendreactnotesapp.mapper.NoteMapper;
 import com.radoslawsawicki.backendreactnotesapp.noteconfig.NoteServiceConfig;
@@ -111,7 +109,7 @@ class NoteControllerTestSuite {
     }
 
     @Test
-    void shouldFetchUpdateNote() throws Exception, LoginUserNotFoundException, NoteListNotFoundException {
+    void shouldFetchUpdateNote() throws Exception {
         //Given
         log.info("Starting test: shouldFetchUpdateNote");
 
@@ -138,7 +136,7 @@ class NoteControllerTestSuite {
     }
 
     @Test
-    void shouldFetchCreateNote() throws Exception, LoginUserNotFoundException, NoteListNotFoundException {
+    void shouldFetchCreateNote() throws Exception {
         //Given
         log.info("Starting test: shouldFetchCreateNote");
 
