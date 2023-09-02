@@ -1,20 +1,24 @@
-package com.radoslawsawicki.backendreactnotesapp.domain;
+package com.radoslawsawicki.backendreactnotesapp.service;
 
+import com.radoslawsawicki.backendreactnotesapp.domain.NoteList;
+import com.radoslawsawicki.backendreactnotesapp.exception.NoteListNotFoundException;
 import com.radoslawsawicki.backendreactnotesapp.repository.NoteListRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
-public class NoteListTestSuite {
+public class NoteListServiceTestSuite {
 
-    private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(NoteListTestSuite.class);
+    private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(NoteListServiceTestSuite.class);
 
     @Autowired
     private NoteListRepository repository;
+
+    @Autowired
+    private NoteListService service;
 
     @AfterEach
     void tearDown() {
@@ -28,11 +32,11 @@ public class NoteListTestSuite {
 
         NoteList noteList = new NoteList("TestList");
 
-        //When
-        repository.save(noteList);
+        // When
+        service.saveNoteList(noteList);
 
         //Then
-        assertEquals(1, repository.count());
+        assertTrue(repository.existsById(noteList.getNoteListId()));
     }
 
     @Test
@@ -46,29 +50,31 @@ public class NoteListTestSuite {
         //When
         repository.save(noteList1);
         repository.save(noteList2);
+        long size = service.getAllNoteLists().size();
 
         //Then
-        assertEquals(2, repository.findAll().size());
+        assertEquals(2, size);
     }
 
     @Test
-    void shouldFetchGetNoteListByIdTest() {
+    void shouldFetchGetNoteListByIdTest() throws NoteListNotFoundException {
         //Given
         log.info("Starting test: shouldFetchGetNoteListByIdTest");
 
         NoteList noteList = new NoteList("TestList");
 
-        //When
+        // When
         repository.save(noteList);
+        NoteList note = service.getNoteList(noteList.getNoteListId());
 
         //Then
-        assertTrue(repository.existsById(noteList.getNoteListId()));
+        assertFalse(note.getListName().isEmpty());
     }
 
     @Test
-    void shouldFetchDeleteLoginUser() {
+    void shouldFetchDeleteNoteList() {
         //Given
-        log.info("Starting test: shouldFetchDeleteLoginUser");
+        log.info("Starting test: shouldFetchDeleteNoteList");
 
         NoteList noteList1 = new NoteList("TestList");
         NoteList noteList2 = new NoteList("TestList");
@@ -76,10 +82,10 @@ public class NoteListTestSuite {
         //When
         repository.save(noteList1);
         repository.save(noteList2);
-        repository.delete(noteList1);
+        service.deleteNoteList(noteList1.getNoteListId());
 
         //Then
-        assertEquals(1, repository.count());
+        assertEquals(1, repository.findAll().size());
     }
 }
 

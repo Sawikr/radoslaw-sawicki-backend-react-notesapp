@@ -12,6 +12,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @SpringBootTest
 public class MailTestSuite {
 
+    private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(MailTestSuite.class);
+
     @Autowired
     private MailRepository repository;
 
@@ -21,8 +23,10 @@ public class MailTestSuite {
     }
 
     @Test
-    void createEmailTest() {
+    void shouldFetchCreateEmailTest() {
         //Given
+        log.info("Starting test: shouldFetchCreateEmailTest");
+
         Mail mail = new Mail("Test", "Test Message", "sawikr@op.pl");
 
         //When
@@ -32,10 +36,11 @@ public class MailTestSuite {
         assertEquals(1, repository.count());
     }
 
-
     @Test
-    void getAllEmailsTest() {
+    void shouldFetchGetAllEmailsTest() {
         //Given
+        log.info("Starting test: shouldFetchGetAllEmailsTest");
+
         Mail mail1 = new Mail("Test", "Test Message", "sawikr@op.pl");
         Mail mail2 = new Mail("Test", "Test Message", "sawikr@op.pl");
 
@@ -47,11 +52,11 @@ public class MailTestSuite {
         assertEquals(2, repository.findAll().size());
     }
 
-
     @Test
-    void getEmailByIdTest() {
-
+    void shouldFetchGetEmailByIdTest() {
         //Given
+        log.info("Starting test: shouldFetchGetEmailByIdTest");
+
         Mail mail = new Mail("Test", "Test Message", "sawikr@op.pl");
 
         //When
@@ -62,8 +67,10 @@ public class MailTestSuite {
     }
 
     @Test
-    void deleteEmail() {
+    void shouldFetchDeleteEmail() {
         //Given
+        log.info("Starting test: shouldFetchDeleteEmail");
+
         Mail mail1 = new Mail("Test", "Test Message", "sawikr@op.pl");
         Mail mail2 = new Mail("Test", "Test Message", "sawikr@op.pl");
 

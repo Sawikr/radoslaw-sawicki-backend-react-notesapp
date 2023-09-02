@@ -24,9 +24,9 @@ import static org.mockito.Mockito.when;
 
 @SpringJUnitWebConfig
 @WebMvcTest(MailController.class)
-class MailControllerTest {
+class MailControllerTestSuite {
 
-    private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(MailControllerTest.class);
+    private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(MailControllerTestSuite.class);
 
     @BeforeEach
     void setUp() {

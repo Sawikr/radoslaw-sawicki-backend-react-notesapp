@@ -1,5 +1,7 @@
-package com.radoslawsawicki.backendreactnotesapp.domain;
+package com.radoslawsawicki.backendreactnotesapp.service;
 
+import com.radoslawsawicki.backendreactnotesapp.domain.LoginUser;
+import com.radoslawsawicki.backendreactnotesapp.exception.LoginUserNotFoundException;
 import com.radoslawsawicki.backendreactnotesapp.repository.LoginUserRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
@@ -9,12 +11,15 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest
-public class LoginUserTestSuite {
+public class LoginUserServiceTestSuite {
 
-    private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(LoginUserTestSuite.class);
+    private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(LoginUserServiceTestSuite.class);
 
     @Autowired
     private LoginUserRepository repository;
+
+    @Autowired
+    private LoginUserService service;
 
     @AfterEach
     void tearDown() {
@@ -28,11 +33,11 @@ public class LoginUserTestSuite {
 
         LoginUser loginUser = new LoginUser("Test", true);
 
-        //When
-        repository.save(loginUser);
+        // When
+        service.saveLoginUser(loginUser);
 
         //Then
-        assertEquals(1, repository.count());
+        assertTrue(repository.existsById(loginUser.getLoginUserId()));
     }
 
     @Test
@@ -46,23 +51,25 @@ public class LoginUserTestSuite {
         //When
         repository.save(loginUser1);
         repository.save(loginUser2);
+        long size = service.getAllLoginUsers().size();
 
         //Then
-        assertEquals(2, repository.findAll().size());
+        assertEquals(2, size);
     }
 
     @Test
-    void shouldFetchGetLoginUserByIdTest() {
+    void shouldFetchGetLoginUserByIdTest() throws LoginUserNotFoundException {
         //Given
         log.info("Starting test: shouldFetchGetLoginUserByIdTest");
 
         LoginUser loginUser = new LoginUser("Test", true);
 
-        //When
+        // When
         repository.save(loginUser);
+        LoginUser login = service.getLoginUser(loginUser.getLoginUserId());
 
         //Then
-        assertTrue(repository.existsById(loginUser.getLoginUserId()));
+        assertTrue(login.isLogin());
     }
 
     @Test
@@ -76,9 +83,9 @@ public class LoginUserTestSuite {
         //When
         repository.save(loginUser1);
         repository.save(loginUser2);
-        repository.delete(loginUser1);
+        service.deleteLoginUser(loginUser1.getLoginUserId());
 
         //Then
-        assertEquals(1, repository.count());
+        assertEquals(1, repository.findAll().size());
     }
 }

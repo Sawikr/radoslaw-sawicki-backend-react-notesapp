@@ -14,6 +14,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @SpringBootTest
 public class CurrencyTestSuite {
 
+    private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(CurrencyTestSuite.class);
+
     @Autowired
     private CurrencyRepository repository;
 
@@ -23,8 +25,10 @@ public class CurrencyTestSuite {
     }
 
     @Test
-    void createCurrencyTest() {
+    void shouldFetchCreateCurrencyTest() {
         //Given
+        log.info("Starting test: shouldFetchCreateCurrencyTest");
+
         List<Rate> rates = List.of(new Rate("161/A/NBP/2023", "2023-08-22", 4.4524));
         Currency currency = new Currency("A", "Euro", "eur", rates);
 
@@ -35,10 +39,11 @@ public class CurrencyTestSuite {
         assertEquals(1, repository.count());
     }
 
-
     @Test
-    void getAllCurrenciesTest() {
+    void shouldFetchGetAllCurrenciesTest() {
         //Given
+        log.info("Starting test: shouldFetchGetAllCurrenciesTest");
+
         List<Rate> rates = List.of(new Rate("161/A/NBP/2023", "2023-08-22", 4.4524));
         Currency currency1 = new Currency("A", "Euro", "eur", rates);
         Currency currency2 = new Currency("A", "Euro", "eur", rates);
@@ -51,11 +56,11 @@ public class CurrencyTestSuite {
         assertEquals(2, repository.findAll().size());
     }
 
-
     @Test
-    void getCurrencyByIdTest() {
-
+    void shouldFetchGetCurrencyByIdTest() {
         //Given
+        log.info("Starting test: shouldFetchGetCurrencyByIdTest");
+
         List<Rate> rates = List.of(new Rate("161/A/NBP/2023", "2023-08-22", 4.4524));
         Currency currency = new Currency("A", "Euro", "eur", rates);
 
@@ -67,8 +72,10 @@ public class CurrencyTestSuite {
     }
 
     @Test
-    void deleteCurrency() {
+    void shouldFetchDeleteCurrency() {
         //Given
+        log.info("Starting test: shouldFetchDeleteCurrency");
+
         List<Rate> rates = List.of(new Rate("161/A/NBP/2023", "2023-08-22", 4.4524));
         Currency currency1 = new Currency("A", "Euro", "eur", rates);
         Currency currency2 = new Currency("A", "Euro", "eur", rates);

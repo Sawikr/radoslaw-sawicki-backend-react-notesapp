@@ -2,7 +2,6 @@ package com.radoslawsawicki.backendreactnotesapp.service;
 
 import com.radoslawsawicki.backendreactnotesapp.domain.Note;
 import com.radoslawsawicki.backendreactnotesapp.exception.NoteNotFoundException;
-import com.radoslawsawicki.backendreactnotesapp.mapper.NoteMapper;
 import com.radoslawsawicki.backendreactnotesapp.repository.NoteRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -13,7 +12,6 @@ import java.util.List;
 public class NoteService {
 
     private final NoteRepository repository;
-    private final NoteMapper mapper;
 
     public List<Note> getAllNotes() {
         return repository.findAll();

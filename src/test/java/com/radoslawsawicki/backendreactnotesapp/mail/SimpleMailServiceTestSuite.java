@@ -17,9 +17,9 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 @ExtendWith(MockitoExtension.class)
-class SimpleMailServiceTest {
+class SimpleMailServiceTestSuite {
 
-    private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(SimpleMailServiceTest.class);
+    private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(SimpleMailServiceTestSuite.class);
 
     @BeforeEach
     void setUp() {
@@ -40,9 +40,9 @@ class SimpleMailServiceTest {
     private JavaMailSender javaMailSender;
 
     @Test
-    public void shouldSendEmail() {
+    public void shouldFetchSendEmail() {
         //Given
-        log.info("Starting test: shouldSendEmail");
+        log.info("Starting test: shouldFetchSendEmail");
 
         Mail mail = new Mail(1L, "sawikr10@gmail.com", "Test",
                 "Test message");
@@ -57,9 +57,9 @@ class SimpleMailServiceTest {
     }
 
     @Test
-    public void shouldSendEmailAndCheckTaskCounter() {
+    public void shouldFetchSendEmailAndCheckTaskCounter() {
         //Given
-        log.info("Starting test: shouldSendEmailAndCheckTaskCounter");
+        log.info("Starting test: shouldFetchSendEmailAndCheckTaskCounter");
 
         long size = 2;
         Mail mail = new Mail(1L, "sawikr10@gmail.com", "Test",
