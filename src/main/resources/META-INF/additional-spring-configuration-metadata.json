@@ -64,5 +64,15 @@
       "name": "weather_url_get_forecast.api.endpoint",
       "type": "java.lang.String",
       "description": "Description for weather_url_get_forecast.api.endpoint."
+    },
+    {
+      "name": "spring.security.admin.name",
+      "type": "java.lang.String",
+      "description": "Description for spring.security.admin.name."
+    },
+    {
+      "name": "spring.security.admin.password",
+      "type": "java.lang.String",
+      "description": "Description for spring.security.admin.password."
     }
   ] }
