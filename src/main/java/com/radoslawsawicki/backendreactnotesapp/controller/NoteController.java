@@ -7,7 +7,6 @@ import com.radoslawsawicki.backendreactnotesapp.mapper.NoteMapper;
 import com.radoslawsawicki.backendreactnotesapp.noteconfig.NoteServiceConfig;
 import com.radoslawsawicki.backendreactnotesapp.service.NoteService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -17,7 +16,6 @@ import java.util.List;
 @CrossOrigin("*")
 @RestController
 @RequiredArgsConstructor
-@EnableAspectJAutoProxy
 @RequestMapping("/api")
 public class NoteController {
 
@@ -25,27 +23,27 @@ public class NoteController {
 	private final NoteService service;
     private final NoteServiceConfig config;
 
-	@PreAuthorize("hasRole('ADMIN, USER')")
+	@PreAuthorize("hasAnyRole('ADMIN','USER')")
 	@GetMapping("/notes")
 	public ResponseEntity<List<NoteDto>> getNotes () {
 		List<Note> notes = service.getAllNotes();
 		return ResponseEntity.ok(mapper.mapToNoteDtoList(notes));
 	}
 
-	@PreAuthorize("hasRole('ADMIN, USER')")
+	@PreAuthorize("hasAnyRole('ADMIN','USER')")
 	@GetMapping(value = "/notes/{id}")
 	public ResponseEntity<NoteDto> getNote(@PathVariable Long id) throws NoteNotFoundException {
 		return ResponseEntity.ok(mapper.mapToNoteDto(service.getNote(id)));
 	}
 
-	@PreAuthorize("hasRole('ADMIN')")
+	@PreAuthorize("hasAnyRole('ADMIN','USER')")
 	@DeleteMapping(value = "/notes/{id}")
 	public ResponseEntity<Void> deleteNote(@PathVariable Long id) {
 		service.deleteNote(id);
 		return ResponseEntity.ok().build();
 	}
 
-	@PreAuthorize("hasRole('ADMIN')")
+	@PreAuthorize("hasAnyRole('ADMIN','USER')")
 	@PutMapping(value = "/notes", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<NoteDto> updateNote(@RequestBody NoteDto noteDto) {
 		Note note = config.getNote(noteDto);
@@ -53,7 +51,7 @@ public class NoteController {
 		return ResponseEntity.ok().build();
 	}
 
-	@PreAuthorize("hasRole('ADMIN')")
+	@PreAuthorize("hasAnyRole('ADMIN','USER')")
 	@PostMapping(value = "/notes", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<NoteDto> createNote(@RequestBody NoteDto noteDto) {
 		Note note = config.getNote(noteDto);

@@ -1,4 +1,4 @@
-package com.radoslawsawicki.backendreactnotesapp.domain;
+package com.radoslawsawicki.backendreactnotesapp.security.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
