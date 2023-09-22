@@ -2,6 +2,7 @@ package com.radoslawsawicki.backendreactnotesapp.controller;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.radoslawsawicki.backendreactnotesapp.domain.LoginUser;
 import com.radoslawsawicki.backendreactnotesapp.domain.Note;
 import com.radoslawsawicki.backendreactnotesapp.dto.NoteDto;
 import com.radoslawsawicki.backendreactnotesapp.exception.NoteNotFoundException;
@@ -180,7 +181,7 @@ class NoteControllerTestSuite {
     }
 
     private NoteDto getNoteDto() {
-        return new NoteDto(1L, "Test", "Test note", "Programming",
+        return new NoteDto(1L, "Test", "Test note", "Programming", new LoginUser("User", true),
                 ZonedDateTime.of(LocalDate.now().atTime(11, 30), ZoneOffset.UTC),
                 ZonedDateTime.of(LocalDate.now().atTime(11, 30), ZoneOffset.UTC));
     }

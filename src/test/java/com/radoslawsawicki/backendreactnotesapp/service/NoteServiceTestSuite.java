@@ -1,6 +1,8 @@
 package com.radoslawsawicki.backendreactnotesapp.service;
 
+import com.radoslawsawicki.backendreactnotesapp.domain.LoginUser;
 import com.radoslawsawicki.backendreactnotesapp.domain.Note;
+import com.radoslawsawicki.backendreactnotesapp.domain.NoteList;
 import com.radoslawsawicki.backendreactnotesapp.exception.NoteNotFoundException;
 import com.radoslawsawicki.backendreactnotesapp.repository.NoteRepository;
 import org.junit.jupiter.api.AfterEach;
@@ -35,7 +37,7 @@ public class NoteServiceTestSuite {
         //Given
         log.info("Starting test: shouldFetchCreateNoteTest");
 
-        Note note = new Note("Test", "Test note", "Programming",
+        Note note = new Note("Test", "Test note", "Programming", new LoginUser("User", true),
                 ZonedDateTime.of(LocalDate.now().atTime(11, 30), ZoneOffset.UTC),
                 ZonedDateTime.of(LocalDate.now().atTime(11, 30), ZoneOffset.UTC));
 
@@ -51,10 +53,10 @@ public class NoteServiceTestSuite {
         //Given
         log.info("Starting test: shouldFetchGetAllNotesTest");
 
-        Note note1 = new Note("Test", "Test note", "Programming",
+        Note note1 = new Note("Test", "Test note", "Programming", new LoginUser("User", true),
                 ZonedDateTime.of(LocalDate.now().atTime(11, 30), ZoneOffset.UTC),
                 ZonedDateTime.of(LocalDate.now().atTime(11, 30), ZoneOffset.UTC));
-        Note note2 = new Note("Test", "Test note", "Programming",
+        Note note2 = new Note("Test", "Test note", "Programming", new LoginUser("User", true),
                 ZonedDateTime.of(LocalDate.now().atTime(11, 30), ZoneOffset.UTC),
                 ZonedDateTime.of(LocalDate.now().atTime(11, 30), ZoneOffset.UTC));
 
@@ -72,7 +74,7 @@ public class NoteServiceTestSuite {
         //Given
         log.info("Starting test: shouldFetchGetNoteByIdTest");
 
-        Note note = new Note("Test", "Test note", "Programming",
+        Note note = new Note("Test", "Test note", "Programming", new LoginUser("User", true),
                 ZonedDateTime.of(LocalDate.now().atTime(11, 30), ZoneOffset.UTC),
                 ZonedDateTime.of(LocalDate.now().atTime(11, 30), ZoneOffset.UTC));
 
@@ -89,10 +91,10 @@ public class NoteServiceTestSuite {
         //Given
         log.info("Starting test: shouldFetchDeleteNote");
 
-        Note note1 = new Note("Test", "Test note", "Programming",
+        Note note1 = new Note("Test", "Test note", "Programming", new LoginUser("User", true),
                 ZonedDateTime.of(LocalDate.now().atTime(11, 30), ZoneOffset.UTC),
                 ZonedDateTime.of(LocalDate.now().atTime(11, 30), ZoneOffset.UTC));
-        Note note2 = new Note("Test", "Test note", "Programming",
+        Note note2 = new Note("Test", "Test note", "Programming", new LoginUser("User", true),
                 ZonedDateTime.of(LocalDate.now().atTime(11, 30), ZoneOffset.UTC),
                 ZonedDateTime.of(LocalDate.now().atTime(11, 30), ZoneOffset.UTC));
 

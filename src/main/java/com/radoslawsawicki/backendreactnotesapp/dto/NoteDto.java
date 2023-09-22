@@ -12,6 +12,7 @@ public class NoteDto {
     private String title;
     private String body;
     private String category;
+    private String loginUser;
     private ZonedDateTime createdAt;
     private ZonedDateTime updatedAt;
 }

@@ -32,10 +32,11 @@ public class Note {
 		this.updatedAt = updatedAt;
 	}
 
-	public Note(String title, String body, String category, ZonedDateTime createdAt, ZonedDateTime updatedAt) {
+	public Note(String title, String body, String category, LoginUser loginUser, ZonedDateTime createdAt, ZonedDateTime updatedAt) {
 		this.title = title;
 		this.body = body;
 		this.category = category;
+		this.loginUser = loginUser;
 		this.createdAt = createdAt;
 		this.updatedAt = updatedAt;
 	}

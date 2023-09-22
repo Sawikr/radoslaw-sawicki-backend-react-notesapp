@@ -25,6 +25,7 @@ public class NoteMapper {
                 note.getTitle(),
                 note.getBody(),
                 note.getCategory(),
+                note.getLoginUser().getLoginName(),
                 note.getCreatedAt(),
                 note.getUpdatedAt()
         );
