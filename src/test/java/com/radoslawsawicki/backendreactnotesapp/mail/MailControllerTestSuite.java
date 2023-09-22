@@ -7,7 +7,6 @@ import com.radoslawsawicki.backendreactnotesapp.mail.domain.Mail;
 import com.radoslawsawicki.backendreactnotesapp.mail.dto.MailDto;
 import com.radoslawsawicki.backendreactnotesapp.mail.mapper.MailMapper;
 import com.radoslawsawicki.backendreactnotesapp.mail.service.SimpleMailService;
-import org.hamcrest.Matchers;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -58,8 +57,7 @@ class MailControllerTestSuite {
                 .perform(MockMvcRequestBuilders
                         .get("/api/notes/email")
                         .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$", Matchers.hasSize(0)));
+                .andExpect(MockMvcResultMatchers.status().isUnauthorized());
     }
 
     @Test
@@ -80,11 +78,7 @@ class MailControllerTestSuite {
                 .perform(MockMvcRequestBuilders
                         .get("/api/notes/email/1")
                         .contentType(MediaType.APPLICATION_JSON))
-
-                .andExpect(MockMvcResultMatchers.jsonPath("$.id", Matchers.is(1)))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.email", Matchers.is("sawikr10@gmail.com")))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.title", Matchers.is("Test")))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.body", Matchers.is("Test message")));
+                .andExpect(MockMvcResultMatchers.status().isUnauthorized());
     }
 
     @Test
@@ -109,7 +103,7 @@ class MailControllerTestSuite {
                         .contentType(MediaType.APPLICATION_JSON)
                         .characterEncoding("UTF-8")
                         .content(jsonContent))
-                .andExpect(MockMvcResultMatchers.status().isOk());
+                .andExpect(MockMvcResultMatchers.status().isForbidden());
     }
 
     @Test
@@ -134,6 +128,6 @@ class MailControllerTestSuite {
                         .contentType(MediaType.APPLICATION_JSON)
                         .characterEncoding("UTF-8")
                         .content(jsonContent))
-                .andExpect(MockMvcResultMatchers.status().isOk());
+                .andExpect(MockMvcResultMatchers.status().isForbidden());
     }
 }

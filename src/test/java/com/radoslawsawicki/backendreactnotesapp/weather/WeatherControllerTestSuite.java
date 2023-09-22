@@ -68,7 +68,7 @@ class WeatherControllerTestSuite {
                 .perform(MockMvcRequestBuilders
                         .get("/api/notes/weather")
                         .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(MockMvcResultMatchers.status().isOk());
+                .andExpect(MockMvcResultMatchers.status().is4xxClientError());
     }
 
     @Test
@@ -87,7 +87,7 @@ class WeatherControllerTestSuite {
                 .perform(MockMvcRequestBuilders
                         .get("/api/notes/weather/list")
                         .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(MockMvcResultMatchers.status().isOk());
+                .andExpect(MockMvcResultMatchers.status().is4xxClientError());
     }
 
     @Test
@@ -104,7 +104,7 @@ class WeatherControllerTestSuite {
                 .perform(MockMvcRequestBuilders
                         .get("/api/notes/weather/1")
                         .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(MockMvcResultMatchers.status().isOk());
+                .andExpect(MockMvcResultMatchers.status().is4xxClientError());
     }
 
     @Test
@@ -124,9 +124,9 @@ class WeatherControllerTestSuite {
                 .perform(MockMvcRequestBuilders
                         .delete("/api/notes/weather/1")
                         .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(MockMvcResultMatchers.status().isOk());
+                .andExpect(MockMvcResultMatchers.status().isForbidden());
 
-        verify(service, times(1)).deleteWeather(1L);
+        verify(service, times(0)).deleteWeather(1L);
     }
 
     @Test

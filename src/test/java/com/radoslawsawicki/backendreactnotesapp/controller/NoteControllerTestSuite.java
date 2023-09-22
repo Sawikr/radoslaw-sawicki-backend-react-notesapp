@@ -2,14 +2,12 @@ package com.radoslawsawicki.backendreactnotesapp.controller;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.radoslawsawicki.backendreactnotesapp.domain.LoginUser;
 import com.radoslawsawicki.backendreactnotesapp.domain.Note;
 import com.radoslawsawicki.backendreactnotesapp.dto.NoteDto;
 import com.radoslawsawicki.backendreactnotesapp.exception.NoteNotFoundException;
 import com.radoslawsawicki.backendreactnotesapp.mapper.NoteMapper;
 import com.radoslawsawicki.backendreactnotesapp.noteconfig.NoteServiceConfig;
 import com.radoslawsawicki.backendreactnotesapp.service.NoteService;
-import org.hamcrest.Matchers;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -67,8 +65,7 @@ class NoteControllerTestSuite {
                 .perform(MockMvcRequestBuilders
                         .get("/api/notes")
                         .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$", Matchers.hasSize(0)));
+                .andExpect(MockMvcResultMatchers.status().isUnauthorized());
     }
 
     @Test
@@ -87,11 +84,7 @@ class NoteControllerTestSuite {
                 .perform(MockMvcRequestBuilders
                         .get("/api/notes/1")
                         .contentType(MediaType.APPLICATION_JSON))
-
-                .andExpect(MockMvcResultMatchers.jsonPath("$.id", Matchers.is(1)))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.title", Matchers.is("Test")))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.body", Matchers.is("Test note")))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.category", Matchers.is("Programming")));
+                .andExpect(MockMvcResultMatchers.status().isUnauthorized());
     }
 
     @Test
@@ -111,9 +104,9 @@ class NoteControllerTestSuite {
                 .perform(MockMvcRequestBuilders
                         .delete("/api/notes/1")
                         .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(MockMvcResultMatchers.status().isOk());
+                .andExpect(MockMvcResultMatchers.status().isForbidden());
 
-        verify(service, times(1)).deleteNote(1L);
+        verify(service, times(0)).deleteNote(1L);
     }
 
     @Test
@@ -140,7 +133,7 @@ class NoteControllerTestSuite {
                         .contentType(MediaType.APPLICATION_JSON)
                         .characterEncoding("UTF-8")
                         .content(jsonContent))
-                .andExpect(MockMvcResultMatchers.status().is4xxClientError());
+                .andExpect(MockMvcResultMatchers.status().isForbidden());
     }
 
     @Test
@@ -171,7 +164,7 @@ class NoteControllerTestSuite {
                         .contentType(MediaType.APPLICATION_JSON)
                         .characterEncoding("UTF-8")
                         .content(jsonContent))
-                .andExpect(MockMvcResultMatchers.status().is4xxClientError());
+                .andExpect(MockMvcResultMatchers.status().isForbidden());
     }
 
     private Note getNote() {
@@ -181,7 +174,7 @@ class NoteControllerTestSuite {
     }
 
     private NoteDto getNoteDto() {
-        return new NoteDto(1L, "Test", "Test note", "Programming", new LoginUser("User", true),
+        return new NoteDto(1L, "Test", "Test note", "Programming", "User",
                 ZonedDateTime.of(LocalDate.now().atTime(11, 30), ZoneOffset.UTC),
                 ZonedDateTime.of(LocalDate.now().atTime(11, 30), ZoneOffset.UTC));
     }

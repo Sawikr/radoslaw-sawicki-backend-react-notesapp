@@ -6,7 +6,6 @@ import com.radoslawsawicki.backendreactnotesapp.dto.NoteListDto;
 import com.radoslawsawicki.backendreactnotesapp.exception.NoteListNotFoundException;
 import com.radoslawsawicki.backendreactnotesapp.mapper.NoteListMapper;
 import com.radoslawsawicki.backendreactnotesapp.service.NoteListService;
-import org.hamcrest.Matchers;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -60,8 +59,7 @@ class NoteListControllerTestSuite {
                 .perform(MockMvcRequestBuilders
                         .get("/api/noteLists")
                         .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$", Matchers.hasSize(0)));
+                .andExpect(MockMvcResultMatchers.status().isUnauthorized());
     }
 
     @Test
@@ -80,9 +78,7 @@ class NoteListControllerTestSuite {
                 .perform(MockMvcRequestBuilders
                         .get("/api/noteLists/1")
                         .contentType(MediaType.APPLICATION_JSON))
-
-                .andExpect(MockMvcResultMatchers.jsonPath("$.noteListId", Matchers.is(1)))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.listName", Matchers.is("TestList")));
+                .andExpect(MockMvcResultMatchers.status().isUnauthorized());
     }
 
     @Test
@@ -102,9 +98,9 @@ class NoteListControllerTestSuite {
                 .perform(MockMvcRequestBuilders
                         .delete("/api/noteLists/1")
                         .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(MockMvcResultMatchers.status().isOk());
+                .andExpect(MockMvcResultMatchers.status().isForbidden());
 
-        verify(service, times(1)).deleteNoteList(1L);
+        verify(service, times(0)).deleteNoteList(1L);
     }
 
     @Test
@@ -127,7 +123,7 @@ class NoteListControllerTestSuite {
                         .contentType(MediaType.APPLICATION_JSON)
                         .characterEncoding("UTF-8")
                         .content(jsonContent))
-                .andExpect(MockMvcResultMatchers.status().isOk());
+                .andExpect(MockMvcResultMatchers.status().isForbidden());
     }
 
     @Test
@@ -150,7 +146,7 @@ class NoteListControllerTestSuite {
                         .contentType(MediaType.APPLICATION_JSON)
                         .characterEncoding("UTF-8")
                         .content(jsonContent))
-                .andExpect(MockMvcResultMatchers.status().isOk());
+                .andExpect(MockMvcResultMatchers.status().isForbidden());
     }
 }
 

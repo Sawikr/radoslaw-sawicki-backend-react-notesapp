@@ -15,7 +15,6 @@ import org.springframework.test.context.junit.jupiter.web.SpringJUnitWebConfig;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 @SpringJUnitWebConfig
@@ -50,14 +49,14 @@ class CurrencyControllerTestSuite {
         //Given
         log.info("Starting test: shouldFetchEroCurrency");
 
-        when(service.getCurrencyFromNbpApi("eur")).thenReturn(any(Double.class));
+        when(service.getCurrencyFromNbpApi("eur")).thenReturn(4.0);
 
         //When & Then
         mockMvc
                 .perform(MockMvcRequestBuilders
                         .get("/api/notes/currency/eur")
                         .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(MockMvcResultMatchers.status().isOk());
+                .andExpect(MockMvcResultMatchers.status().isUnauthorized());
     }
 
     @Test
@@ -65,14 +64,14 @@ class CurrencyControllerTestSuite {
         //Given
         log.info("Starting test: shouldFetchUSDCurrency");
 
-        when(service.getCurrencyFromNbpApi("usd")).thenReturn(any(Double.class));
+        when(service.getCurrencyFromNbpApi("usd")).thenReturn(4.0);
 
         //When & Then
         mockMvc
                 .perform(MockMvcRequestBuilders
                         .get("/api/notes/currency/usd")
                         .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(MockMvcResultMatchers.status().isOk());
+                .andExpect(MockMvcResultMatchers.status().isUnauthorized());
     }
 
     @Test
@@ -80,14 +79,14 @@ class CurrencyControllerTestSuite {
         //Given
         log.info("Starting test: shouldFetchCHFCurrency");
 
-        when(service.getCurrencyFromNbpApi("chf")).thenReturn(any(Double.class));
+        when(service.getCurrencyFromNbpApi("chf")).thenReturn(4.0);
 
         //When & Then
         mockMvc
                 .perform(MockMvcRequestBuilders
                         .get("/api/notes/currency/usd")
                         .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(MockMvcResultMatchers.status().isOk());
+                .andExpect(MockMvcResultMatchers.status().isUnauthorized());
     }
 
     @Test
@@ -95,13 +94,13 @@ class CurrencyControllerTestSuite {
         //Given
         log.info("Starting test: shouldFetchGBPCurrency");
 
-        when(service.getCurrencyFromNbpApi("gbp")).thenReturn(any(Double.class));
+        when(service.getCurrencyFromNbpApi("gbp")).thenReturn(4.0);
 
         //When & Then
         mockMvc
                 .perform(MockMvcRequestBuilders
                         .get("/api/notes/currency/usd")
                         .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(MockMvcResultMatchers.status().isOk());
+                .andExpect(MockMvcResultMatchers.status().isUnauthorized());
     }
 }

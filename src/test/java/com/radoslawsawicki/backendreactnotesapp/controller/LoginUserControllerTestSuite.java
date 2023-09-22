@@ -6,7 +6,6 @@ import com.radoslawsawicki.backendreactnotesapp.dto.LoginUserDto;
 import com.radoslawsawicki.backendreactnotesapp.exception.LoginUserNotFoundException;
 import com.radoslawsawicki.backendreactnotesapp.mapper.LoginUserMapper;
 import com.radoslawsawicki.backendreactnotesapp.service.LoginUserService;
-import org.hamcrest.Matchers;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -60,8 +59,7 @@ class LoginUserControllerTestSuite {
                 .perform(MockMvcRequestBuilders
                         .get("/api/users")
                         .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$", Matchers.hasSize(0)));
+                .andExpect(MockMvcResultMatchers.status().isUnauthorized());
     }
 
     @Test
@@ -80,7 +78,7 @@ class LoginUserControllerTestSuite {
                 .perform(MockMvcRequestBuilders
                         .get("/api/users/1")
                         .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.loginName", Matchers.is("Test")));
+                .andExpect(MockMvcResultMatchers.status().isUnauthorized());
     }
 
     @Test
@@ -100,9 +98,9 @@ class LoginUserControllerTestSuite {
                 .perform(MockMvcRequestBuilders
                         .delete("/api/users/1")
                         .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(MockMvcResultMatchers.status().isOk());
+                .andExpect(MockMvcResultMatchers.status().isForbidden());
 
-        verify(service, times(1)).deleteLoginUser(1L);
+        verify(service, times(0)).deleteLoginUser(1L);
     }
 
     @Test
@@ -125,7 +123,7 @@ class LoginUserControllerTestSuite {
                         .contentType(MediaType.APPLICATION_JSON)
                         .characterEncoding("UTF-8")
                         .content(jsonContent))
-                .andExpect(MockMvcResultMatchers.status().isOk());
+                .andExpect(MockMvcResultMatchers.status().isForbidden());
     }
 
     @Test
@@ -148,7 +146,7 @@ class LoginUserControllerTestSuite {
                         .contentType(MediaType.APPLICATION_JSON)
                         .characterEncoding("UTF-8")
                         .content(jsonContent))
-                .andExpect(MockMvcResultMatchers.status().isOk());
+                .andExpect(MockMvcResultMatchers.status().isForbidden());
     }
 }
 
