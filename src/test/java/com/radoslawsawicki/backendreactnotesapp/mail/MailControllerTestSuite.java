@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors;
 import org.springframework.test.context.junit.jupiter.web.SpringJUnitWebConfig;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -56,6 +57,22 @@ class MailControllerTestSuite {
         mockMvc
                 .perform(MockMvcRequestBuilders
                         .get("/api/notes/email")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .with(SecurityMockMvcRequestPostProcessors.user("user").roles("USER", "ADMIN")))
+                .andExpect(MockMvcResultMatchers.status().isOk());
+    }
+
+    @Test
+    void shouldNotFetchEmailList() throws Exception {
+        //Given
+        log.info("Starting test: shouldNotFetchEmailList");
+
+        when(service.getAllEmails()).thenReturn(List.of());
+
+        //When & Then
+        mockMvc
+                .perform(MockMvcRequestBuilders
+                        .get("/api/notes/email")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isUnauthorized());
     }
@@ -64,6 +81,28 @@ class MailControllerTestSuite {
     void shouldFetchGetEmail() throws Exception, MailNotFoundException {
         //Given
         log.info("Starting test: shouldFetchGetEmail");
+
+        Mail mail = new Mail(1L, "sawikr10@gmail.com", "Test",
+                "Test message");
+        MailDto mailDto = new MailDto(1L, "sawikr10@gmail.com", "Test",
+                "Test message");
+
+        when((mapper.mapToMailDto(mail))).thenReturn(mailDto);
+        when(service.getEmail(mail.getId())).thenReturn(mail);
+
+        //When & Then
+        mockMvc
+                .perform(MockMvcRequestBuilders
+                        .get("/api/notes/email/1")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .with(SecurityMockMvcRequestPostProcessors.user("user").roles("USER", "ADMIN")))
+                .andExpect(MockMvcResultMatchers.status().isOk());
+    }
+
+    @Test
+    void shouldNotFetchGetEmail() throws Exception, MailNotFoundException {
+        //Given
+        log.info("Starting test: shouldNotFetchGetEmail");
 
         Mail mail = new Mail(1L, "sawikr10@gmail.com", "Test",
                 "Test message");
@@ -101,6 +140,33 @@ class MailControllerTestSuite {
                 .perform(MockMvcRequestBuilders
                         .put("/api/notes/email")
                         .contentType(MediaType.APPLICATION_JSON)
+                        .with(SecurityMockMvcRequestPostProcessors.user("user").roles("USER", "ADMIN"))
+                        .with(SecurityMockMvcRequestPostProcessors.csrf())
+                        .characterEncoding("UTF-8")
+                        .content(jsonContent))
+                .andExpect(MockMvcResultMatchers.status().isOk());
+    }
+
+    @Test
+    void shouldNotFetchUpdateEmail() throws Exception {
+        //Given
+        log.info("Starting test: shouldNotFetchUpdateEmail");
+
+        Mail mail = new Mail(1L, "sawikr10@gmail.com", "Test",
+                "Test message");
+        MailDto mailDto = new MailDto(1L, "sawikr10@gmail.com", "Test",
+                "Test message");
+
+        when(mapper.mapToMailDto(mail)).thenReturn(mailDto);
+
+        Gson gson = new Gson();
+        String jsonContent = gson.toJson(mailDto);
+
+        //When & Then
+        mockMvc
+                .perform(MockMvcRequestBuilders
+                        .put("/api/notes/email")
+                        .contentType(MediaType.APPLICATION_JSON)
                         .characterEncoding("UTF-8")
                         .content(jsonContent))
                 .andExpect(MockMvcResultMatchers.status().isForbidden());
@@ -110,6 +176,33 @@ class MailControllerTestSuite {
     void shouldFetchCreateEmail() throws Exception {
         //Given
         log.info("Starting test: shouldFetchCreateEmail");
+
+        Mail mail = new Mail(1L, "sawikr10@gmail.com", "Test",
+                "Test message");
+        MailDto mailDto = new MailDto(1L, "sawikr10@gmail.com", "Test",
+                "Test message");
+
+        when(mapper.mapToMail(mailDto)).thenReturn(mail);
+
+        Gson gson = new Gson();
+        String jsonContent = gson.toJson(mailDto);
+
+        //When & Then
+        mockMvc
+                .perform(MockMvcRequestBuilders
+                        .post("/api/notes/email")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .with(SecurityMockMvcRequestPostProcessors.user("user").roles("USER", "ADMIN"))
+                        .with(SecurityMockMvcRequestPostProcessors.csrf())
+                        .characterEncoding("UTF-8")
+                        .content(jsonContent))
+                .andExpect(MockMvcResultMatchers.status().isOk());
+    }
+
+    @Test
+    void shouldNotFetchCreateEmail() throws Exception {
+        //Given
+        log.info("Starting test: shouldNotFetchCreateEmail");
 
         Mail mail = new Mail(1L, "sawikr10@gmail.com", "Test",
                 "Test message");

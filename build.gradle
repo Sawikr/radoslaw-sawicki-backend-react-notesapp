@@ -41,6 +41,7 @@ dependencies {
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.2'
+    testImplementation group: 'org.springframework.security', name: 'spring-security-test', version: '6.1.4'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.2'
     testImplementation 'org.seleniumhq.selenium:selenium-java:3.141.59'
 }
