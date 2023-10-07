@@ -1,7 +1,7 @@
 package com.radoslawsawicki.backendreactnotesapp.domain;
 
 import com.radoslawsawicki.backendreactnotesapp.repository.NoteListRepository;
-import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -16,7 +16,7 @@ public class NoteListTestSuite {
     @Autowired
     private NoteListRepository repository;
 
-    @AfterEach
+    @BeforeEach
     void tearDown() {
         repository.deleteAll();
     }

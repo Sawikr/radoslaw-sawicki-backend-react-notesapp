@@ -3,7 +3,7 @@ package com.radoslawsawicki.backendreactnotesapp.service;
 import com.radoslawsawicki.backendreactnotesapp.domain.Note;
 import com.radoslawsawicki.backendreactnotesapp.exception.NoteNotFoundException;
 import com.radoslawsawicki.backendreactnotesapp.repository.NoteRepository;
-import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -25,7 +25,7 @@ public class NoteServiceTestSuite {
     @Autowired
     private NoteService service;
 
-    @AfterEach
+    @BeforeEach
     void tearDown() {
         repository.deleteAll();
     }
