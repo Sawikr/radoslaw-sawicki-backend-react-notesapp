@@ -25,4 +25,9 @@ public class GlobalSecurityErrorHandler {
                 webRequest.getDescription(false)
         );
     }
+
+    @ExceptionHandler(UserNotFoundException.class)
+    public ResponseEntity<Object> handleUserNotFoundException(UserNotFoundException exception) {
+        return new ResponseEntity<>("User with given id doesn't exist!", HttpStatus.BAD_REQUEST);
+    }
 }
