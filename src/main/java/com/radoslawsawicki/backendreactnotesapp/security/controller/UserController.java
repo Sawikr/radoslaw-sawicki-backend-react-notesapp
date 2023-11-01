@@ -20,14 +20,12 @@ public class UserController {
     private UserService service;
     private UserMapper mapper;
 
-    //@PreAuthorize("hasAnyRole('ADMIN','USER')")
     @GetMapping("/auth/user")
     public ResponseEntity<List<UserDto>> getUsers () {
         List<User> users = service.getAllUsers();
         return ResponseEntity.ok(mapper.mapToUserDtoList(users));
     }
 
-    //@PreAuthorize("hasAnyRole('ADMIN','USER')")
     @GetMapping(value = "/auth/user/{id}")
     public ResponseEntity<UserDto> getUser(@PathVariable Long id) throws UserNotFoundException {
         return ResponseEntity.ok(mapper.mapToUserDto(service.getUser(id)));
