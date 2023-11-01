@@ -32,20 +32,20 @@ public class Note {
 		this.updatedAt = updatedAt;
 	}
 
-	public Note(String title, String body, String category, ZonedDateTime createdAt, ZonedDateTime updatedAt) {
-		this.title = title;
-		this.body = body;
-		this.category = category;
-		this.createdAt = createdAt;
-		this.updatedAt = updatedAt;
-	}
-
 	public Note(String title, String body, String category, LoginUser loginUser, ZonedDateTime createdAt, ZonedDateTime updatedAt) {
 		this.title = title;
 		this.body = body;
 		this.category = category;
 		this.loginUser = loginUser;
 		this.createdAt = createdAt;
+		this.updatedAt = updatedAt;
+	}
+
+	public Note(Long id, String title, String body, String category, ZonedDateTime updatedAt) {
+		this.id = id;
+		this.title = title;
+		this.body = body;
+		this.category = category;
 		this.updatedAt = updatedAt;
 	}
 
