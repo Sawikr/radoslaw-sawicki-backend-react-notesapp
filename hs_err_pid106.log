@@ -1,0 +1,95 @@
+#
+# A fatal error has been detected by the Java Runtime Environment:
+#
+#  SIGBUS (0x7) at pc=0x00007f2a752c5545, pid=106, tid=117
+#
+# JRE version: OpenJDK Runtime Environment (17.0.1+12) (build 17.0.1+12-nixos)
+# Java VM: OpenJDK 64-Bit Server VM (17.0.1+12-nixos, mixed mode, emulated-client, sharing, tiered, compressed oops, compressed class ptrs, serial gc, linux-amd64)
+# Problematic frame:
+# V  [libjvm.so+0x622545]  Dependencies::find_unique_concrete_method(InstanceKlass*, Method*, Klass*, Method*)+0x125
+#
+# Core dump will be written. Default location: Core dumps may be processed with "/usr/share/apport/apport -p%p -s%s -c%c -d%d -P%P -u%u -g%g -- %E" (or dumping to /home/runner/radoslaw-sawicki-backend-react-notesapp/core.106)
+#
+# If you would like to submit a bug report, please visit:
+#   https://bugreport.java.com/bugreport/crash.jsp
+#
+
+---------------  S U M M A R Y ------------
+
+Command Line: -XX:TieredStopAtLevel=1 -Dfile.encoding=UTF-8 -Duser.country=US -Duser.language=en -Duser.variant com.radoslawsawicki.backendreactnotesapp.BackendReactNotesApplication
+
+Host: AMD EPYC 7B12, 4 cores, 1G, Ubuntu 20.04.2 LTS
+Time: Tue Oct 31 13:59:14 2023 UTC elapsed time: 6831.096089 seconds (0d 1h 53m 51s)
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x00007f2a7005a450):  JavaThread "C1 CompilerThread0" daemon [_thread_in_vm, id=117, stack(0x00007f2a64718000,0x00007f2a64819000)]
+
+
+Current CompileTask:
+C1:6831096 9683   !   1       sun.security.jca.GetInstance::getInstance (130 bytes)
+
+Stack: [0x00007f2a64718000,0x00007f2a64819000],  sp=0x00007f2a64816b80,  free space=1018k
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+V  [libjvm.so+0x622545]  Dependencies::find_unique_concrete_method(InstanceKlass*, Method*, Klass*, Method*)+0x125
+V  [libjvm.so+0x550856]  ciMethod::find_monomorphic_target(ciInstanceKlass*, ciInstanceKlass*, ciInstanceKlass*, bool)+0x306
+V  [libjvm.so+0x47c03a]  GraphBuilder::invoke(Bytecodes::Code)+0x12aa
+V  [libjvm.so+0x47c73b]  GraphBuilder::iterate_bytecodes_for_block(int)+0x5bb
+V  [libjvm.so+0x47ed4d]  GraphBuilder::iterate_all_blocks(bool)+0x7d
+V  [libjvm.so+0x47f74e]  GraphBuilder::try_inline_full(ciMethod*, bool, bool, Bytecodes::Code, Instruction*)+0x9be
+V  [libjvm.so+0x47ad3d]  GraphBuilder::try_inline(ciMethod*, bool, bool, Bytecodes::Code, Instruction*)+0x19d
+V  [libjvm.so+0x47b85a]  GraphBuilder::invoke(Bytecodes::Code)+0xaca
+V  [libjvm.so+0x47c73b]  GraphBuilder::iterate_bytecodes_for_block(int)+0x5bb
+V  [libjvm.so+0x47ed3d]  GraphBuilder::iterate_all_blocks(bool)+0x6d
+V  [libjvm.so+0x480e36]  GraphBuilder::GraphBuilder(Compilation*, IRScope*)+0x306
+V  [libjvm.so+0x48631a]  IRScope::IRScope(Compilation*, IRScope*, int, ciMethod*, int, bool)+0x1aa
+V  [libjvm.so+0x4863e3]  IR::IR(Compilation*, ciMethod*, int)+0xa3
+V  [libjvm.so+0x45fee3]  Compilation::build_hir() [clone .part.0]+0x163
+V  [libjvm.so+0x461d7c]  Compilation::compile_java_method()+0x3bc
+V  [libjvm.so+0x461eea]  Compilation::compile_method()+0x10a
+V  [libjvm.so+0x4622cc]  Compilation::Compilation(AbstractCompiler*, ciEnv*, ciMethod*, int, BufferBlob*, bool, DirectiveSet*)+0x20c
+V  [libjvm.so+0x462d20]  Compiler::compile_method(ciEnv*, ciMethod*, int, bool, DirectiveSet*)+0xb0
+V  [libjvm.so+0x5d8b41]  CompileBroker::invoke_compiler_on_method(CompileTask*)+0xd81
+V  [libjvm.so+0x5d96d8]  CompileBroker::compiler_thread_loop()+0x4b8
+V  [libjvm.so+0xe55ee0]  JavaThread::thread_main_inner()+0xd0
+V  [libjvm.so+0xe5952e]  Thread::call_run()+0xde
+V  [libjvm.so+0xc11761]  thread_native_entry(Thread*)+0xe1
+
+
+siginfo: si_signo: 7 (SIGBUS), si_code: 2 (BUS_ADRERR), si_addr: 0x00007f2a74841260
+
+Register to memory mapping:
+
+RAX=0x00007f2a74841260 is an unknown value
+RBX={method} {0x00007f2a64ed0ee0} 'newInstance' '(Ljava/lang/Object;)Ljava/lang/Object;' in 'java/security/Provider$Service'
+RCX=0x0000000000000001 is an unknown value
+RDX=0x0000000800cec110 is a pointer to class: 
+java.security.Provider$Service {0x0000000800cec110}
+ - instance size:     8
+ - klass size:        69
+ - access:            public synchronized 
+ - state:             fully_initialized
+ - name:              'java/security/Provider$Service'
+ - super:             'java/lang/Object'
+ - sub:               'com/sun/security/sasl/Provider$ProviderService'   'sun/security/provider/certpath/ldap/JdkLDAP$ProviderService'   'sun/security/smartcardio/SunPCSC$ProviderService'   'sun/security/jgss/SunProvider$ProviderService'   (3 more klasses...)
+ - arrays:            NULL
+ - methods:           Array<T>(0x00007f2a64ed02a0)
+ - method ordering:   Array<T>(0x000000080091fa28)
+ - default_methods:   Array<T>(0x0000000000000000)
+ - local interfaces:  Array<T>(0x00000008005c5028)
+ - trans. interfaces: Array<T>(0x00000008005c5028)
+ - constants:         constant pool [456] {0x00007f2a64ecf258} for 'java/security/Provider$Service' cache=0x00007f2a64ed1cd8
+ - class loader data:  loader data: 0x00007f2a70016d90 of 'bootstrap'
+ - source file:       'Provider.java'
+ - class annotations:       Array<T>(0x0000000000000000)
+ - class type annotations:  Array<T>(0x0000000000000000)
+ - field annotations:       Array<T>(0x0000000000000000)
+ - field type annotations:  Array<T>(0x0000000000000000)
+ - inner classes:     Array<T>(0x00007f2a64ed1ca8)
+ - nest members:     Array<T>(0x00000008005c4fb8)
+ - permitted subclasses:     Array<T>(0x00000008005c4fb8)
+ - java mirror:       a 'java/lang/Class'{0x00000000f61db390} = 'java/security/Provider$Service'
+ - vtable length      8  (start addr: 0x0000000800cec2e0)
+ - itable length      2 (start addr: 0x0000000800cec320)
+ - ---- static fields (1 words):
+ - private static final 'CLASS0' '[Lj

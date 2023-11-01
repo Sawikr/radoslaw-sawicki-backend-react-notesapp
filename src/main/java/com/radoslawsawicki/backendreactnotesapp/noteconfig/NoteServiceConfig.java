@@ -45,7 +45,7 @@ public class NoteServiceConfig {
         LocalDateTime ldt = LocalDateTime.now(); 
         ZoneId warsaw = ZoneId.of("Europe/Warsaw"); 
         ZonedDateTime dateWarsaw = ZonedDateTime.of(ldt, warsaw);
-        return dateWarsaw.plusHours(2);
+        return dateWarsaw.plusHours(1);
     }
 
     public ZonedDateTime parseStringToZonedTimeDate(String date) {
