@@ -4,9 +4,7 @@ import com.radoslawsawicki.backendreactnotesapp.domain.LoginUser;
 import com.radoslawsawicki.backendreactnotesapp.domain.Note;
 import com.radoslawsawicki.backendreactnotesapp.domain.NoteList;
 import com.radoslawsawicki.backendreactnotesapp.dto.NoteDto;
-import com.radoslawsawicki.backendreactnotesapp.dto.NoteUpdateDto;
 import com.radoslawsawicki.backendreactnotesapp.mapper.NoteMapper;
-import com.radoslawsawicki.backendreactnotesapp.mapper.NoteUpdateMapper;
 import com.radoslawsawicki.backendreactnotesapp.service.LoginUserService;
 import com.radoslawsawicki.backendreactnotesapp.service.NoteListService;
 import lombok.RequiredArgsConstructor;
@@ -21,21 +19,11 @@ import java.util.List;
 public class NoteServiceConfig {
 
     private final NoteMapper mapper;
-    private final NoteUpdateMapper updateMapper;
     private final LoginUserService loginUserService;
     private final NoteListService noteListService;
 
     public Note getNote(NoteDto noteDto) {
         Note note = mapper.mapToNote(noteDto);
-        List<LoginUser> loginUserList = loginUserService.getAllLoginUsers();
-        loginUser(note, loginUserList);
-        List<NoteList> noteListList = noteListService.getAllNoteLists();
-        noteList(note,noteListList);
-        return note;
-    }
-
-    public Note getNoteUpdate(NoteUpdateDto noteUpdateDto) {
-        Note note = updateMapper.mapToNoteUpdate(noteUpdateDto);
         List<LoginUser> loginUserList = loginUserService.getAllLoginUsers();
         loginUser(note, loginUserList);
         List<NoteList> noteListList = noteListService.getAllNoteLists();
@@ -57,6 +45,13 @@ public class NoteServiceConfig {
         LocalDateTime ldt = LocalDateTime.now(); 
         ZoneId warsaw = ZoneId.of("Europe/Warsaw"); 
         ZonedDateTime dateWarsaw = ZonedDateTime.of(ldt, warsaw);
+        return dateWarsaw.plusHours(2);
+    }
+
+    public ZonedDateTime parseStringToZonedTimeDate(String date) {
+        ZonedDateTime zonedDateTime = ZonedDateTime.parse(date);
+        ZoneId warsaw = ZoneId.of("Europe/Warsaw");
+        ZonedDateTime dateWarsaw = ZonedDateTime.of(LocalDateTime.from(zonedDateTime), warsaw);
         return dateWarsaw.plusHours(2);
     }
 }

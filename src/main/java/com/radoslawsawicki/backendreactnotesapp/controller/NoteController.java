@@ -2,7 +2,6 @@ package com.radoslawsawicki.backendreactnotesapp.controller;
 
 import com.radoslawsawicki.backendreactnotesapp.domain.Note;
 import com.radoslawsawicki.backendreactnotesapp.dto.NoteDto;
-import com.radoslawsawicki.backendreactnotesapp.dto.NoteUpdateDto;
 import com.radoslawsawicki.backendreactnotesapp.exception.NoteNotFoundException;
 import com.radoslawsawicki.backendreactnotesapp.mapper.NoteMapper;
 import com.radoslawsawicki.backendreactnotesapp.noteconfig.NoteServiceConfig;
@@ -12,6 +11,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
+import java.util.Map;
 
 @CrossOrigin("*")
 @RestController
@@ -48,15 +48,12 @@ public class NoteController {
 		return ResponseEntity.ok().build();
 	}
 
-	@PatchMapping(value = "/notes", consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<NoteDto> partialUpdateNote(@RequestBody NoteUpdateDto noteUpdateDto) {
-		Note note = config.getNoteUpdate(noteUpdateDto);
-		note.setUpdatedAt(config.getCorrectDate());
-		service.saveNote(note);
+    @PatchMapping(value = "/notes/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Note> updateNoteFields(@PathVariable Long id, @RequestBody Map<String, Object> fields) {
+		service.updateNoteByFields(id, fields);
 		return ResponseEntity.ok().build();
-	}
+    }
 
-	//@PreAuthorize("hasAnyRole('ADMIN','USER')")
 	@PostMapping(value = "/notes", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<NoteDto> createNote(@RequestBody NoteDto noteDto) {
 		Note note = config.getNote(noteDto);
