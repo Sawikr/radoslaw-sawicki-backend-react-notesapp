@@ -10,8 +10,13 @@ public class UserMapper {
 
     public UserDto mapToUserDto(final User user) {
         return new UserDto(
+<<<<<<< HEAD
                 user.getUsername(),
                 user.getEmail()
+=======
+            user.getUsername(),
+            user.getEmail()
+>>>>>>> 89451b7 (Notes: adding UserDto, UserMapper, UserService and UserController)
         );
     }
 

@@ -20,6 +20,11 @@ public class User {
     private String password;
     private Set<Role> roles;
 
+    public User(String username, String email) {
+        this.username = username;
+        this.email = email;
+    }
+
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     @NonNull
