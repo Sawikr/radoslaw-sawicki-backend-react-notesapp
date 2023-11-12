@@ -10,14 +10,14 @@ public class UserMapper {
 
     public UserDto mapToUserDto(final User user) {
         return new UserDto(
-                user.getUsername(),
-                user.getEmail()
+            user.getUsername(),
+            user.getEmail()
         );
     }
 
     public List<UserDto> mapToUserDtoList(final List<User> user) {
         return user.stream()
-                .map(this::mapToUserDto)
-                .toList();
+            .map(this::mapToUserDto)
+            .toList();
     }
 }
