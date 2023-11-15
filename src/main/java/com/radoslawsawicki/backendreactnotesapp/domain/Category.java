@@ -16,10 +16,12 @@ public class Category {
 
     private Long id;
     private String categoryName;
+    private String username;
 
-    public Category(Long id, String categoryName) {
+    public Category(Long id, String categoryName, String username) {
         this.id = id;
         this.categoryName = categoryName;
+        this.username = username;
     }
 
     @Id
@@ -36,16 +38,22 @@ public class Category {
         return categoryName;
     }
 
+    @NonNull
+    @Column(name = "USERNAME")
+    public String getUsername() {
+        return username;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Category category = (Category) o;
-        return Objects.equals(id, category.id) && Objects.equals(categoryName, category.categoryName);
+        return Objects.equals(id, category.id) && Objects.equals(categoryName, category.categoryName) && Objects.equals(username, category.username);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, categoryName);
+        return Objects.hash(id, categoryName, username);
     }
 }

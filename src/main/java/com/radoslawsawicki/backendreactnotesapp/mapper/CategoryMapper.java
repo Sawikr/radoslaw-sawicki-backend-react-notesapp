@@ -11,14 +11,16 @@ public class CategoryMapper {
     public Category mapToCategory(final CategoryDto categoryDto) {
         return new Category(
                 categoryDto.getId(),
-                categoryDto.getCategoryName()
+                categoryDto.getCategoryName(),
+                categoryDto.getUsername()
         );
     }
 
     public CategoryDto mapToCategoryDto(final Category category) {
         return new CategoryDto(
                 category.getId(),
-                category.getCategoryName()
+                category.getCategoryName(),
+                category.getUsername()
         );
     }
 

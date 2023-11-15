@@ -36,4 +36,10 @@ public class CategoryController {
 		service.saveCategory(mapper.mapToCategory(categoryDto));
 		return ResponseEntity.ok().build();
 	}
+
+	@PostMapping(value = "/category", consumes = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<CategoryDto> createCategory(@RequestBody CategoryDto categoryDto) {
+		service.saveCategory(mapper.mapToCategory(categoryDto));
+		return ResponseEntity.ok().build();
+	}
 }
