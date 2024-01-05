@@ -34,14 +34,15 @@ public class SpringSecurityConfig {
         http.csrf((csrf) -> csrf.disable())
                 .authorizeHttpRequests((authorize) -> {
                     authorize.requestMatchers("/api/auth/**").permitAll();
-                    authorize.requestMatchers("/api/notes/currency/**").permitAll();
+                    authorize.requestMatchers("/api/notes/currency").permitAll();
                     authorize.requestMatchers("/api/notes/weather").permitAll();
-                    authorize.requestMatchers(HttpMethod.OPTIONS, "/**").permitAll();
+                    authorize.requestMatchers(HttpMethod.OPTIONS, "/*").permitAll();
                     authorize.anyRequest().authenticated();
                 }).httpBasic(Customizer.withDefaults());
         return http.build();
-    }
 
+    }
+  
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception {
         return configuration.getAuthenticationManager();
