@@ -74,5 +74,15 @@
       "name": "spring.security.admin.password",
       "type": "java.lang.String",
       "description": "Description for spring.security.admin.password."
+    },
+    {
+      "name": "resend.apiKey",
+      "type": "java.lang.String",
+      "description": "Description for resend.apiKey."
+    },
+    {
+      "name": "resend.short.apiKey",
+      "type": "java.lang.String",
+      "description": "Description for resend.short.apiKey."
     }
   ] }

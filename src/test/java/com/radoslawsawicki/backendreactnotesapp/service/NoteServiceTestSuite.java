@@ -35,7 +35,7 @@ public class NoteServiceTestSuite {
         //Given
         log.info("Starting test: shouldFetchCreateNoteTest");
 
-        Note note = new Note("Test", "Test note", "Programming",
+        Note note = new Note(1l, "Test", "Test note", "Programming",
                 ZonedDateTime.of(LocalDate.now().atTime(11, 30), ZoneOffset.UTC),
                 ZonedDateTime.of(LocalDate.now().atTime(11, 30), ZoneOffset.UTC));
 
@@ -51,10 +51,10 @@ public class NoteServiceTestSuite {
         //Given
         log.info("Starting test: shouldFetchGetAllNotesTest");
 
-        Note note1 = new Note("Test", "Test note", "Programming",
+        Note note1 = new Note(1L,"Test", "Test note", "Programming",
                 ZonedDateTime.of(LocalDate.now().atTime(11, 30), ZoneOffset.UTC),
                 ZonedDateTime.of(LocalDate.now().atTime(11, 30), ZoneOffset.UTC));
-        Note note2 = new Note("Test", "Test note", "Programming",
+        Note note2 = new Note(1L,"Test", "Test note", "Programming",
                 ZonedDateTime.of(LocalDate.now().atTime(11, 30), ZoneOffset.UTC),
                 ZonedDateTime.of(LocalDate.now().atTime(11, 30), ZoneOffset.UTC));
 
@@ -72,7 +72,7 @@ public class NoteServiceTestSuite {
         //Given
         log.info("Starting test: shouldFetchGetNoteByIdTest");
 
-        Note note = new Note("Test", "Test note", "Programming",
+        Note note = new Note(1L, "Test", "Test note", "Programming",
                 ZonedDateTime.of(LocalDate.now().atTime(11, 30), ZoneOffset.UTC),
                 ZonedDateTime.of(LocalDate.now().atTime(11, 30), ZoneOffset.UTC));
 
@@ -89,10 +89,10 @@ public class NoteServiceTestSuite {
         //Given
         log.info("Starting test: shouldFetchDeleteNote");
 
-        Note note1 = new Note("Test", "Test note", "Programming",
+        Note note1 = new Note(1l,"Test", "Test note", "Programming",
                 ZonedDateTime.of(LocalDate.now().atTime(11, 30), ZoneOffset.UTC),
                 ZonedDateTime.of(LocalDate.now().atTime(11, 30), ZoneOffset.UTC));
-        Note note2 = new Note("Test", "Test note", "Programming",
+        Note note2 = new Note(1L,"Test", "Test note", "Programming",
                 ZonedDateTime.of(LocalDate.now().atTime(11, 30), ZoneOffset.UTC),
                 ZonedDateTime.of(LocalDate.now().atTime(11, 30), ZoneOffset.UTC));
 

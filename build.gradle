@@ -33,6 +33,7 @@ dependencies {
     implementation 'com.google.code.gson:gson'
     implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation group: 'org.modelmapper', name: 'modelmapper', version: '2.1.1'
+    implementation 'com.resend:resend-java:2.2.1'
     compileOnly 'org.projectlombok:lombok'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     //runtimeOnly 'com.h2database:h2'

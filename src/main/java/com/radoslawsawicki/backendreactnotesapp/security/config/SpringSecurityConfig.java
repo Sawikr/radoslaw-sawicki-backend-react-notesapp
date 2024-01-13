@@ -36,6 +36,7 @@ public class SpringSecurityConfig {
                     authorize.requestMatchers("/api/auth/**").permitAll();
                     authorize.requestMatchers("/api/notes/currency/**").permitAll();
                     authorize.requestMatchers("/api/notes/weather").permitAll();
+                    authorize.requestMatchers("/api/notes/resend").permitAll();
                     authorize.requestMatchers(HttpMethod.OPTIONS, "/**").permitAll();
                     authorize.anyRequest().authenticated();
                 }).httpBasic(Customizer.withDefaults());
