@@ -15,8 +15,9 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import java.util.HashSet;
-import java.util.Set;
+import org.springframework.util.ReflectionUtils;
+import java.lang.reflect.Field;
+import java.util.*;
 
 @Service
 @AllArgsConstructor
@@ -64,5 +65,23 @@ public class AuthServiceImpl implements AuthService {
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
         return "User logged-in successfully!";
+    }
+
+    @Override
+    public String updatePasswordByFields(String emailName, Map<String, Object> fields) {
+        Optional<User> existingNote = userRepository.findByEmail(emailName);
+        System.out.println("ExistingNote is: " + existingNote);
+        if (existingNote.isPresent()) {
+            fields.forEach((key, value) -> {
+                Field field = ReflectionUtils.findField(User.class, key);
+                Objects.requireNonNull(field).setAccessible(true);
+                if (key.contains("password")) {
+                    ReflectionUtils.setField(field, existingNote.get(), passwordEncoder.encode((CharSequence) value));
+                }
+            });
+            userRepository.save(existingNote.get());
+        }
+
+        return "Reset password successfully!";
     }
 }

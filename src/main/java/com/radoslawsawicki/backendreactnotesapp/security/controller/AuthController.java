@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import java.util.Map;
 
 @CrossOrigin("*")
 @AllArgsConstructor
@@ -26,6 +27,12 @@ public class AuthController {
     @PostMapping(value = "/login", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<String> login(@RequestBody LoginDto loginDto){
         String response = authService.login(loginDto);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @PatchMapping(value = "/reset/{emailName}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<String> updatePasswordByFields(@PathVariable String emailName, @RequestBody Map<String, Object> fields) {
+        String response = authService.updatePasswordByFields(emailName, fields);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 }
