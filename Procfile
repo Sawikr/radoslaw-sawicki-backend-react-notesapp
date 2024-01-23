@@ -1,0 +1,1 @@
+web: java -jar build/libs/backend-react-notesapp-0.0.1-SNAPSHOT.jar
