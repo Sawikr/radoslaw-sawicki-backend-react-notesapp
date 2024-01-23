@@ -49,6 +49,14 @@ public class Note {
 		this.updatedAt = updatedAt;
 	}
 
+	public Note(String title, String body, String category, ZonedDateTime createdAt, ZonedDateTime updatedAt) {
+		this.title = title;
+		this.body = body;
+		this.category = category;
+		this.createdAt = createdAt;
+		this.updatedAt = updatedAt;
+	}
+
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	@NonNull
