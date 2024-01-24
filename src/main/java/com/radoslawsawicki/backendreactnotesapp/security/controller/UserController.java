@@ -7,7 +7,6 @@ import com.radoslawsawicki.backendreactnotesapp.security.mapper.UserMapper;
 import com.radoslawsawicki.backendreactnotesapp.security.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
@@ -20,14 +19,12 @@ public class UserController {
     private UserService service;
     private UserMapper mapper;
 
-    @PreAuthorize("hasAnyRole('ADMIN','USER')")
     @GetMapping("/auth/user")
     public ResponseEntity<List<UserDto>> getUsers () {
         List<User> users = service.getAllUsers();
         return ResponseEntity.ok(mapper.mapToUserDtoList(users));
     }
 
-    @PreAuthorize("hasAnyRole('ADMIN','USER')")
     @GetMapping(value = "/auth/user/{id}")
     public ResponseEntity<UserDto> getUser(@PathVariable Long id) throws UserNotFoundException {
         return ResponseEntity.ok(mapper.mapToUserDto(service.getUser(id)));
