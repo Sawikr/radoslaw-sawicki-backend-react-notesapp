@@ -1,5 +1,6 @@
 package com.radoslawsawicki.backendreactnotesapp.security.controller;
 
+import com.radoslawsawicki.backendreactnotesapp.security.dto.JwtAuthResponse;
 import com.radoslawsawicki.backendreactnotesapp.security.dto.LoginDto;
 import com.radoslawsawicki.backendreactnotesapp.security.dto.RegisterDto;
 import com.radoslawsawicki.backendreactnotesapp.security.service.AuthService;
@@ -25,9 +26,13 @@ public class AuthController {
     }
 
     @PostMapping(value = "/login", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<String> login(@RequestBody LoginDto loginDto){
-        String response = authService.login(loginDto);
-        return new ResponseEntity<>(response, HttpStatus.OK);
+    public ResponseEntity<JwtAuthResponse> login(@RequestBody LoginDto loginDto){
+        String token = authService.login(loginDto);
+
+        JwtAuthResponse jwtAuthResponse = new JwtAuthResponse();
+        jwtAuthResponse.setAccessToken(token);
+
+        return new ResponseEntity<>(jwtAuthResponse, HttpStatus.OK);
     }
 
     @PatchMapping(value = "/reset/{emailName}", consumes = MediaType.APPLICATION_JSON_VALUE)

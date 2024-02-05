@@ -84,5 +84,15 @@
       "name": "resend.short.apiKey",
       "type": "java.lang.String",
       "description": "Description for resend.short.apiKey."
+    },
+    {
+      "name": "app.jwt-secret",
+      "type": "java.lang.String",
+      "description": "Description for app.jwt-secret."
+    },
+    {
+      "name": "app.jet-expiration-milliseconds",
+      "type": "java.lang.String",
+      "description": "Description for app.jet-expiration-milliseconds."
     }
   ] }

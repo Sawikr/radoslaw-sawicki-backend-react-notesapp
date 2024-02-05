@@ -1,5 +1,6 @@
 package com.radoslawsawicki.backendreactnotesapp.security.service;
 
+import com.radoslawsawicki.backendreactnotesapp.security.config.JwtTokenProvider;
 import com.radoslawsawicki.backendreactnotesapp.security.domain.Role;
 import com.radoslawsawicki.backendreactnotesapp.security.domain.User;
 import com.radoslawsawicki.backendreactnotesapp.security.dto.LoginDto;
@@ -27,6 +28,7 @@ public class AuthServiceImpl implements AuthService {
     private RoleRepository roleRepository;
     private PasswordEncoder passwordEncoder;
     private AuthenticationManager authenticationManager;
+    private JwtTokenProvider jwtTokenProvider;
 
     @Override
     public String register(RegisterDto registerDto) {
@@ -64,7 +66,9 @@ public class AuthServiceImpl implements AuthService {
         ));
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
-        return "User logged-in successfully!";
+        String token = jwtTokenProvider.generateToken(authentication);
+
+        return token;
     }
 
     @Override
