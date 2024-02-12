@@ -41,7 +41,7 @@ public class SpringSecurityConfig {
                     authorize.requestMatchers("/api/notes/weather").permitAll();
                     authorize.requestMatchers("/api/notes/resend").permitAll();
                     authorize.requestMatchers("/swagger-ui/**", "/swagger-resources/*", "/v3/api-docs/**").permitAll();
-                    //authorize.requestMatchers("/api/notes").permitAll();
+                    //authorize.requestMatchers("/**").permitAll();//swagger
                     authorize.requestMatchers(HttpMethod.OPTIONS, "/**").permitAll();
                     authorize.anyRequest().authenticated();
                 }).httpBasic(Customizer.withDefaults());

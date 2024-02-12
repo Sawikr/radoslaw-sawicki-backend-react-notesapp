@@ -7,6 +7,7 @@ import com.radoslawsawicki.backendreactnotesapp.mapper.NoteMapper;
 import com.radoslawsawicki.backendreactnotesapp.noteconfig.NoteServiceConfig;
 import com.radoslawsawicki.backendreactnotesapp.service.NoteService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,8 +25,11 @@ public class NoteController {
     private final NoteServiceConfig config;
 
 	@GetMapping("/notes")
-	public ResponseEntity<List<NoteDto>> getNotes () {
-		List<Note> notes = service.getAllNotes();
+	public ResponseEntity<List<NoteDto>> getNotes(@RequestParam(required = false) Integer page,
+												  @RequestParam(required = false) Sort.Direction sort) {
+		int pageNumber = page == null || page < 0 ? 0 : page;
+		Sort.Direction sortDirection = sort == null ? Sort.DEFAULT_DIRECTION : sort;
+		List<Note> notes = service.getAllNotes(pageNumber, sortDirection);
 		return ResponseEntity.ok(mapper.mapToNoteDtoList(notes));
 	}
 

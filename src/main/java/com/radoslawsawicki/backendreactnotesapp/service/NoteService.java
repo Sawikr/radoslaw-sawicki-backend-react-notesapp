@@ -5,6 +5,8 @@ import com.radoslawsawicki.backendreactnotesapp.exception.NoteNotFoundException;
 import com.radoslawsawicki.backendreactnotesapp.noteconfig.NoteServiceConfig;
 import com.radoslawsawicki.backendreactnotesapp.repository.NoteRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.util.ReflectionUtils;
 import org.springframework.stereotype.Service;
 import java.lang.reflect.Field;
@@ -18,11 +20,13 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class NoteService {
 
+    private static final int PAGE_SIZE = 20;
+
     private final NoteRepository repository;
     private final NoteServiceConfig config;
 
-    public List<Note> getAllNotes() {
-        return repository.findAll();
+    public List<Note> getAllNotes(Integer page, Sort.Direction sort) {
+        return repository.findAll(PageRequest.of(page, PAGE_SIZE, Sort.by(sort, "id")));
     }
 
     public Note getNote(final Long noteId) throws NoteNotFoundException {
