@@ -7,6 +7,7 @@ import com.radoslawsawicki.backendreactnotesapp.dto.NoteDto;
 import com.radoslawsawicki.backendreactnotesapp.exception.NoteNotFoundException;
 import com.radoslawsawicki.backendreactnotesapp.mapper.NoteMapper;
 import com.radoslawsawicki.backendreactnotesapp.noteconfig.NoteServiceConfig;
+import com.radoslawsawicki.backendreactnotesapp.security.config.JwtTokenProvider;
 import com.radoslawsawicki.backendreactnotesapp.service.NoteService;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.AfterEach;
@@ -15,6 +16,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors;
@@ -47,6 +49,9 @@ class NoteControllerTestSuite {
     private MockMvc mockMvc;
 
     @MockBean
+    private JwtTokenProvider jwtTokenProvider;
+
+    @MockBean
     private NoteService service;
 
     @MockBean
@@ -61,7 +66,7 @@ class NoteControllerTestSuite {
         //Given
         log.info("Starting test: shouldFetchNotesList");
 
-        when(service.getAllNotes()).thenReturn(List.of());
+        when(service.getAllNotes(0, Sort.DEFAULT_DIRECTION)).thenReturn(List.of());
 
         //When & Then
         mockMvc
@@ -78,7 +83,7 @@ class NoteControllerTestSuite {
         //Given
         log.info("Starting test: shouldNotFetchNotesList");
 
-        when(service.getAllNotes()).thenReturn(List.of());
+        when(service.getAllNotes(0, Sort.DEFAULT_DIRECTION)).thenReturn(List.of());
 
         //When & Then
         mockMvc

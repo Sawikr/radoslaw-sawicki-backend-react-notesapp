@@ -4,11 +4,13 @@ import com.radoslawsawicki.backendreactnotesapp.currencyapi.controller.CurrencyC
 import com.radoslawsawicki.backendreactnotesapp.currencyapi.facade.CurrencyFacade;
 import com.radoslawsawicki.backendreactnotesapp.currencyapi.mapper.CurrencyMapper;
 import com.radoslawsawicki.backendreactnotesapp.currencyapi.service.CurrencyService;
+import com.radoslawsawicki.backendreactnotesapp.security.config.JwtTokenProvider;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors;
@@ -35,6 +37,9 @@ class CurrencyControllerTestSuite {
 
     @Autowired
     private MockMvc mockMvc;
+
+    @MockBean
+    private JwtTokenProvider jwtTokenProvider;
 
     @MockBean
     private CurrencyService service;

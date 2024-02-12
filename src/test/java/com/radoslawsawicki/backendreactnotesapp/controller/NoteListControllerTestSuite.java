@@ -5,6 +5,7 @@ import com.radoslawsawicki.backendreactnotesapp.domain.NoteList;
 import com.radoslawsawicki.backendreactnotesapp.dto.NoteListDto;
 import com.radoslawsawicki.backendreactnotesapp.exception.NoteListNotFoundException;
 import com.radoslawsawicki.backendreactnotesapp.mapper.NoteListMapper;
+import com.radoslawsawicki.backendreactnotesapp.security.config.JwtTokenProvider;
 import com.radoslawsawicki.backendreactnotesapp.service.NoteListService;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.AfterEach;
@@ -43,6 +44,9 @@ class NoteListControllerTestSuite {
 
     @Autowired
     private MockMvc mockMvc;
+
+    @MockBean
+    private JwtTokenProvider jwtTokenProvider;
 
     @MockBean
     private NoteListService service;

@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Pageable;
 import java.time.LocalDate;
 import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
@@ -57,7 +58,7 @@ public class NoteTestSuite {
         repository.save(note2);
 
         //Then
-        assertEquals(2, repository.findAll().size());
+        assertEquals(2, repository.findAll(Pageable.ofSize(2)).size());
     }
 
     @Test
@@ -73,7 +74,7 @@ public class NoteTestSuite {
         repository.save(note);
 
         //Then
-        assertTrue(repository.existsById(repository.findAll().stream().findFirst().orElseThrow().getId()));
+        assertTrue(repository.existsById(repository.findAll(Pageable.ofSize(1)).stream().findFirst().orElseThrow().getId()));
     }
 
     @Test
@@ -91,7 +92,7 @@ public class NoteTestSuite {
         //When
         repository.save(note1);
         repository.save(note2);
-        repository.delete(repository.findAll().stream().findFirst().orElseThrow());
+        repository.delete(repository.findAll(Pageable.ofSize(1)).stream().findFirst().orElseThrow());
 
         //Then
         assertEquals(1, repository.count());

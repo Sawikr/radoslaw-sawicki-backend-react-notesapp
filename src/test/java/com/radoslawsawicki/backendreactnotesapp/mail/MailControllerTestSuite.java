@@ -7,6 +7,7 @@ import com.radoslawsawicki.backendreactnotesapp.mail.domain.Mail;
 import com.radoslawsawicki.backendreactnotesapp.mail.dto.MailDto;
 import com.radoslawsawicki.backendreactnotesapp.mail.mapper.MailMapper;
 import com.radoslawsawicki.backendreactnotesapp.mail.service.SimpleMailService;
+import com.radoslawsawicki.backendreactnotesapp.security.config.JwtTokenProvider;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -39,6 +40,9 @@ class MailControllerTestSuite {
 
     @Autowired
     private MockMvc mockMvc;
+
+    @MockBean
+    private JwtTokenProvider jwtTokenProvider;
 
     @MockBean
     SimpleMailService service;

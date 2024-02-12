@@ -7,6 +7,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import java.time.LocalDate;
 import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
@@ -54,14 +56,14 @@ public class NoteServiceTestSuite {
         Note note1 = new Note(1L,"Test", "Test note", "Programming",
                 ZonedDateTime.of(LocalDate.now().atTime(11, 30), ZoneOffset.UTC),
                 ZonedDateTime.of(LocalDate.now().atTime(11, 30), ZoneOffset.UTC));
-        Note note2 = new Note(1L,"Test", "Test note", "Programming",
+        Note note2 = new Note(2L,"Test", "Test note", "Programming",
                 ZonedDateTime.of(LocalDate.now().atTime(11, 30), ZoneOffset.UTC),
                 ZonedDateTime.of(LocalDate.now().atTime(11, 30), ZoneOffset.UTC));
 
         //When
         repository.save(note1);
         repository.save(note2);
-        long size = service.getAllNotes().size();
+        long size = service.getAllNotes(0, Sort.DEFAULT_DIRECTION).size();
 
         //Then
         assertEquals(2, size);
@@ -92,7 +94,7 @@ public class NoteServiceTestSuite {
         Note note1 = new Note(1L,"Test", "Test note", "Programming",
                 ZonedDateTime.of(LocalDate.now().atTime(11, 30), ZoneOffset.UTC),
                 ZonedDateTime.of(LocalDate.now().atTime(11, 30), ZoneOffset.UTC));
-        Note note2 = new Note(1L,"Test", "Test note", "Programming",
+        Note note2 = new Note(2L,"Test", "Test note", "Programming",
                 ZonedDateTime.of(LocalDate.now().atTime(11, 30), ZoneOffset.UTC),
                 ZonedDateTime.of(LocalDate.now().atTime(11, 30), ZoneOffset.UTC));
 
@@ -102,6 +104,6 @@ public class NoteServiceTestSuite {
         service.deleteNote(note1.getId());
 
         //Then
-        assertEquals(2, repository.findAll().size());
+        assertEquals(1, repository.findAll(Pageable.ofSize(1)).size());
     }
 }

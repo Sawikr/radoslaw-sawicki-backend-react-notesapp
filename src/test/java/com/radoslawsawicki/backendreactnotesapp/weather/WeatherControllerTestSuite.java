@@ -2,6 +2,7 @@ package com.radoslawsawicki.backendreactnotesapp.weather;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.radoslawsawicki.backendreactnotesapp.security.config.JwtTokenProvider;
 import com.radoslawsawicki.backendreactnotesapp.weatherapi.controller.WeatherController;
 import com.radoslawsawicki.backendreactnotesapp.weatherapi.domain.Weather;
 import com.radoslawsawicki.backendreactnotesapp.weatherapi.dto.WeatherDto;
@@ -45,6 +46,9 @@ class WeatherControllerTestSuite {
 
     @Autowired
     private MockMvc mockMvc;
+
+    @MockBean
+    private JwtTokenProvider jwtTokenProvider;
 
     @MockBean
     private WeatherService service;

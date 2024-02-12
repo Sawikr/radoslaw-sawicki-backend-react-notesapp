@@ -5,6 +5,7 @@ import com.radoslawsawicki.backendreactnotesapp.domain.LoginUser;
 import com.radoslawsawicki.backendreactnotesapp.dto.LoginUserDto;
 import com.radoslawsawicki.backendreactnotesapp.exception.LoginUserNotFoundException;
 import com.radoslawsawicki.backendreactnotesapp.mapper.LoginUserMapper;
+import com.radoslawsawicki.backendreactnotesapp.security.config.JwtTokenProvider;
 import com.radoslawsawicki.backendreactnotesapp.service.LoginUserService;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.AfterEach;
@@ -43,6 +44,9 @@ class LoginUserControllerTestSuite {
 
     @Autowired
     private MockMvc mockMvc;
+
+    @MockBean
+    private JwtTokenProvider jwtTokenProvider;
 
     @MockBean
     private LoginUserService service;
