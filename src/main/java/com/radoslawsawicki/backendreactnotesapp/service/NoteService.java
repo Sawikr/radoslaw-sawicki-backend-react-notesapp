@@ -20,7 +20,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class NoteService {
 
-    private static final int PAGE_SIZE = 20;
+    private static final int PAGE_SIZE = 50;
 
     private final NoteRepository repository;
     private final NoteServiceConfig config;
