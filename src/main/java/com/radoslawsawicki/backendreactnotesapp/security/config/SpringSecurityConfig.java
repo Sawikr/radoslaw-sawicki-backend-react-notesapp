@@ -1,6 +1,7 @@
 package com.radoslawsawicki.backendreactnotesapp.security.config;
 
 import lombok.AllArgsConstructor;
+import org.springframework.boot.actuate.autoconfigure.security.servlet.EndpointRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -41,7 +42,7 @@ public class SpringSecurityConfig {
                     authorize.requestMatchers("/api/notes/weather").permitAll();
                     authorize.requestMatchers("/api/notes/resend").permitAll();
                     authorize.requestMatchers("/swagger-ui/**", "/swagger-resources/*", "/v3/api-docs/**").permitAll();
-                    //authorize.requestMatchers("/**").permitAll();//swagger
+                    authorize.requestMatchers("/actuator", "/actuator/info", "/actuator/health").permitAll();
                     authorize.requestMatchers(HttpMethod.OPTIONS, "/**").permitAll();
                     authorize.anyRequest().authenticated();
                 }).httpBasic(Customizer.withDefaults());
