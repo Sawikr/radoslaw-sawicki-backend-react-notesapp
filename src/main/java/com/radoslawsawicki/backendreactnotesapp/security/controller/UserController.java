@@ -5,6 +5,7 @@ import com.radoslawsawicki.backendreactnotesapp.security.dto.UserDto;
 import com.radoslawsawicki.backendreactnotesapp.security.exception.UserNotFoundException;
 import com.radoslawsawicki.backendreactnotesapp.security.mapper.UserMapper;
 import com.radoslawsawicki.backendreactnotesapp.security.service.UserService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +15,10 @@ import java.util.List;
 @AllArgsConstructor
 @RestController
 @RequestMapping("/api")
+@Tag(
+        name = "CRUD REST APIs for an authenticated user",
+        description = "CRUD REST APIs to FETCH authenticated user"
+)
 public class UserController {
 
     private UserService service;

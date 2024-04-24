@@ -5,6 +5,7 @@ import com.radoslawsawicki.backendreactnotesapp.dto.CategoryDto;
 import com.radoslawsawicki.backendreactnotesapp.exception.CategoryNotFoundException;
 import com.radoslawsawicki.backendreactnotesapp.mapper.CategoryMapper;
 import com.radoslawsawicki.backendreactnotesapp.service.CategoryService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +16,10 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/notes")
+@Tag(
+		name = "CRUD REST APIs for category",
+		description = "CRUD REST APIs to CREATE, UPDATE and FETCH category "
+)
 public class CategoryController {
 
 	private final CategoryMapper mapper;

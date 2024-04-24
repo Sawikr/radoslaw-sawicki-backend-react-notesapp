@@ -5,6 +5,7 @@ import com.radoslawsawicki.backendreactnotesapp.mail.domain.Mail;
 import com.radoslawsawicki.backendreactnotesapp.mail.dto.MailDto;
 import com.radoslawsawicki.backendreactnotesapp.mail.mapper.MailMapper;
 import com.radoslawsawicki.backendreactnotesapp.mail.service.SimpleMailService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.http.MediaType;
@@ -17,6 +18,10 @@ import java.util.List;
 @RequiredArgsConstructor
 @EnableAspectJAutoProxy
 @RequestMapping("/api")
+@Tag(
+        name = "CRUD REST APIs for the email",
+        description = "CRUD REST APIs to CREATE, UPDATE and FETCH email"
+)
 public class MailController {
 
     private final SimpleMailService service;

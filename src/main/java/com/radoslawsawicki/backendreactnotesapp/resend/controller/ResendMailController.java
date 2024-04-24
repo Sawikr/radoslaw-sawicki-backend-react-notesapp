@@ -4,6 +4,7 @@ import com.radoslawsawicki.backendreactnotesapp.resend.domain.ResendMail;
 import com.radoslawsawicki.backendreactnotesapp.resend.dto.ResendMailDto;
 import com.radoslawsawicki.backendreactnotesapp.resend.mapper.ResendMailMapper;
 import com.radoslawsawicki.backendreactnotesapp.resend.service.ResendEmailService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.http.MediaType;
@@ -16,6 +17,10 @@ import java.util.List;
 @RequiredArgsConstructor
 @EnableAspectJAutoProxy
 @RequestMapping("/api")
+@Tag(
+        name = "CRUD REST APIs for the email API for developers",
+        description = "CRUD REST APIs to CREATE and FETCH email API for developers"
+)
 public class ResendMailController {
 
     private final ResendEmailService service;

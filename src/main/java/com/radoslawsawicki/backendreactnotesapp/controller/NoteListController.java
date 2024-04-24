@@ -5,6 +5,7 @@ import com.radoslawsawicki.backendreactnotesapp.dto.NoteListDto;
 import com.radoslawsawicki.backendreactnotesapp.exception.NoteListNotFoundException;
 import com.radoslawsawicki.backendreactnotesapp.mapper.NoteListMapper;
 import com.radoslawsawicki.backendreactnotesapp.service.NoteListService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +16,10 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api")
+@Tag(
+		name = "CRUD REST APIs for a list of notes",
+		description = "CRUD REST APIs to CREATE, UPDATE, FETCH and DELETE list of notes"
+)
 public class NoteListController {
 
 	private final NoteListMapper mapper;

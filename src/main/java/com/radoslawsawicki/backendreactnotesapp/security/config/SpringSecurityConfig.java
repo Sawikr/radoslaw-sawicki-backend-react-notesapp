@@ -1,7 +1,6 @@
 package com.radoslawsawicki.backendreactnotesapp.security.config;
 
 import lombok.AllArgsConstructor;
-import org.springframework.boot.actuate.autoconfigure.security.servlet.EndpointRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;

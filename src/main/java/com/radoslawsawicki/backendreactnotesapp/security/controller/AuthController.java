@@ -4,6 +4,7 @@ import com.radoslawsawicki.backendreactnotesapp.security.dto.JwtAuthResponse;
 import com.radoslawsawicki.backendreactnotesapp.security.dto.LoginDto;
 import com.radoslawsawicki.backendreactnotesapp.security.dto.RegisterDto;
 import com.radoslawsawicki.backendreactnotesapp.security.service.AuthService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -15,6 +16,10 @@ import java.util.Map;
 @AllArgsConstructor
 @RestController
 @RequestMapping("/api/auth")
+@Tag(
+        name = "CRUD REST APIs for authentication",
+        description = "CRUD REST APIs to CREATE and UPDATE authentication"
+)
 public class AuthController {
 
     private AuthService authService;

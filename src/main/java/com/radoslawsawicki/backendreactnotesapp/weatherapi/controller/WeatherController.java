@@ -7,6 +7,7 @@ import com.radoslawsawicki.backendreactnotesapp.weatherapi.exception.WeatherProc
 import com.radoslawsawicki.backendreactnotesapp.weatherapi.facade.WeatherFacade;
 import com.radoslawsawicki.backendreactnotesapp.weatherapi.mapper.WeatherMapper;
 import com.radoslawsawicki.backendreactnotesapp.weatherapi.service.WeatherService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +19,10 @@ import java.util.Optional;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/notes")
+@Tag(
+        name = "CRUD REST APIs for weather forecast",
+        description = "CRUD REST APIs to CREATE, UPDATE, FETCH and DELETE weather forecast"
+)
 public class WeatherController {
 
     private final WeatherService service;

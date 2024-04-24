@@ -5,6 +5,7 @@ import com.radoslawsawicki.backendreactnotesapp.dto.LoginUserDto;
 import com.radoslawsawicki.backendreactnotesapp.exception.LoginUserNotFoundException;
 import com.radoslawsawicki.backendreactnotesapp.mapper.LoginUserMapper;
 import com.radoslawsawicki.backendreactnotesapp.service.LoginUserService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +16,10 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api")
+@Tag(
+		name = "CRUD REST APIs for the logged in user",
+		description = "CRUD REST APIs to CREATE, UPDATE, FETCH and DELETE logged in user"
+)
 public class LoginUserController {
 
 	private final LoginUserMapper mapper;

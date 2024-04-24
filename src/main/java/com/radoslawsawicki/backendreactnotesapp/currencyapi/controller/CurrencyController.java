@@ -7,6 +7,7 @@ import com.radoslawsawicki.backendreactnotesapp.currencyapi.exception.CurrencyPr
 import com.radoslawsawicki.backendreactnotesapp.currencyapi.facade.CurrencyFacade;
 import com.radoslawsawicki.backendreactnotesapp.currencyapi.mapper.CurrencyMapper;
 import com.radoslawsawicki.backendreactnotesapp.currencyapi.service.CurrencyService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +18,10 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/notes")
+@Tag(
+        name = "CRUD REST APIs for currency rates",
+        description = "CRUD REST APIs to CREATE, UPDATE, FETCH and DELETE currency rates"
+)
 public class CurrencyController {
 
     private final CurrencyService service;
