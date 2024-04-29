@@ -1,6 +1,7 @@
 package com.radoslawsawicki.backendreactnotesapp.security.domain;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Pattern;
 import lombok.*;
 import java.util.Objects;
 import java.util.Set;
@@ -48,6 +49,8 @@ public class User {
 
     @NonNull
     @Column(name = "PASSWORD")
+    @Pattern(regexp="(^(?=.*[a-z])(?=.*[A-Z])(?=.*\\\\d)(?=.*[@#$%^&+=]).{8,}$)",
+                message = "The password does not meet the requirements!")
     public String getPassword() {
         return password;
     }
