@@ -97,13 +97,13 @@ public class Note {
 		return updatedAt;
 	}
 
-	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
 	@JoinColumn(name= "LOGIN_USER_ID")
 	public LoginUser getLoginUser() {
 		return loginUser;
 	}
 
-	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
 	@JoinColumn(name = "NOTE_LIST_ID")
 	public NoteList getNoteList() {
 		return noteList;}
