@@ -5,6 +5,7 @@ import com.radoslawsawicki.backendreactnotesapp.security.dto.LoginDto;
 import com.radoslawsawicki.backendreactnotesapp.security.dto.RegisterDto;
 import com.radoslawsawicki.backendreactnotesapp.security.service.AuthService;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -25,7 +26,7 @@ public class AuthController {
     private AuthService authService;
 
     @PostMapping(value = "/register", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<String> register(@RequestBody RegisterDto registerDto) {
+    public ResponseEntity<String> register(@Valid @RequestBody RegisterDto registerDto) {
         String response = authService.register(registerDto);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
