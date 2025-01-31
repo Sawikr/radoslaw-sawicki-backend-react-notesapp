@@ -12,7 +12,7 @@ public class SharesApiConfig {
 
     private final RestTemplate restTemplate;
 
-    @Value("https://api.marketstack.com/v1/eod?access_key=ef499193cdf4486ef834e134767736db&symbols=")
+    @Value("https://api.marketstack.com/v1/eod?access_key=ef499193cdf4486ef834e134767736db&limit=2&symbols=")
     private String sharesUrl;
 
     public SharesDto getShares(String code) {

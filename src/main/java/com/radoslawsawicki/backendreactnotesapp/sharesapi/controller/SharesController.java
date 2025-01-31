@@ -25,37 +25,37 @@ public class SharesController {
 
     @GetMapping("/data/1")
     public ResponseEntity<SharesDto> getData1() throws SharesProcessingException {
-        SharesDto sharesLists = sharesApiConfig.getShares("MSFT");
+        SharesDto sharesLists = sharesApiConfig.getShares("IXIC.INDX");
         return ResponseEntity.ok(sharesLists);
     }
 
     @GetMapping("/data/2")
     public ResponseEntity<SharesDto> getData2() throws SharesProcessingException {
-        SharesDto sharesLists = sharesApiConfig.getShares("NVDA");
+        SharesDto sharesLists = sharesApiConfig.getShares("US500.INDX");
         return ResponseEntity.ok(sharesLists);
     }
 
     @GetMapping("/data/3")
     public ResponseEntity<SharesDto> getData3() throws SharesProcessingException {
-        SharesDto sharesLists = sharesApiConfig.getShares("GOOGL");
+        SharesDto sharesLists = sharesApiConfig.getShares("WIG20.INDX");
         return ResponseEntity.ok(sharesLists);
     }
 
     @GetMapping("/data/4")
     public ResponseEntity<SharesDto> getData4() throws SharesProcessingException {
-        SharesDto sharesLists = sharesApiConfig.getShares("PKO.XWAR");
+        SharesDto sharesLists = sharesApiConfig.getShares("NVDA");
         return ResponseEntity.ok(sharesLists);
     }
 
     @GetMapping("/data/5")
     public ResponseEntity<SharesDto> getData5() throws SharesProcessingException {
-        SharesDto sharesLists = sharesApiConfig.getShares("PZU.XWAR");
+        SharesDto sharesLists = sharesApiConfig.getShares("GOOG");
         return ResponseEntity.ok(sharesLists);
     }
 
     @GetMapping("/data/6")
     public ResponseEntity<SharesDto> getData6() throws SharesProcessingException {
-        SharesDto sharesLists = sharesApiConfig.getShares("ALE.XWAR");
+        SharesDto sharesLists = sharesApiConfig.getShares("MSFT");
         return ResponseEntity.ok(sharesLists);
     }
 }
