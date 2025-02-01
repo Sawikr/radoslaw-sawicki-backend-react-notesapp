@@ -36,7 +36,7 @@ public class SharesApiConfig {
     }
 
     private <T> T callGetMethod(String url, Class<T> responseType, Object... objects) {
-        return restTemplate.getForObject(sharesUrl + url + dateFrom + dateMinusDay + dateTo + dateTo,
+        return restTemplate.getForObject(sharesUrl + url + dateFrom + dateMinusDay + dateTo + dateNov,
                 responseType, objects);
     }
 
