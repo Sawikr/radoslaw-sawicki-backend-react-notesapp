@@ -13,13 +13,13 @@ public class SharesApiConfig {
 
     private final RestTemplate restTemplate;
 
-    @Value("https://api.marketstack.com/v1/eod?access_key=ef499193cdf4486ef834e134767736db&limit=2&symbols=")
+    @Value("${shares_url.api.endpoint}")
     private String sharesUrl;
 
-    @Value("&date_from=")
+    @Value("${shares_date_from}")
     private String dateFrom;
 
-    @Value("&date_to=")
+    @Value("${shares_date_to}")
     private String dateTo;
 
     LocalDate dateNov = LocalDate.now();

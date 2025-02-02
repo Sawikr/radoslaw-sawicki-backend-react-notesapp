@@ -40,7 +40,7 @@ public class SpringSecurityConfig {
                     authorize.requestMatchers("/api/notes/currency/**").permitAll();
                     authorize.requestMatchers("/api/notes/weather").permitAll();
                     authorize.requestMatchers("/api/notes/resend").permitAll();
-                    authorize.requestMatchers("/api/notes/data/**").permitAll();
+                    authorize.requestMatchers("/api/notes/shares/**").permitAll();
                     authorize.requestMatchers("/swagger-ui/**", "/swagger-resources/*", "/v3/api-docs/**").permitAll();
                     authorize.requestMatchers("/actuator", "/actuator/info", "/actuator/health").permitAll();
                     authorize.requestMatchers(HttpMethod.OPTIONS, "/**").permitAll();
