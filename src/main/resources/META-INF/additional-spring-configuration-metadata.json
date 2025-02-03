@@ -94,5 +94,20 @@
       "name": "app.jet-expiration-milliseconds",
       "type": "java.lang.String",
       "description": "Description for app.jet-expiration-milliseconds."
+    },
+    {
+      "name": "shares_url.api.endpoint",
+      "type": "java.lang.String",
+      "description": "Description for shares_url.api.endpoint."
+    },
+    {
+      "name": "shares_date_from",
+      "type": "java.lang.String",
+      "description": "Description for shares_date_from."
+    },
+    {
+      "name": "shares_date_to",
+      "type": "java.lang.String",
+      "description": "Description for shares_date_to."
     }
   ] }
