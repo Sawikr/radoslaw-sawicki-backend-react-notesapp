@@ -23,7 +23,7 @@ public class SharesApiConfig {
     private String dateTo;
 
     LocalDate dateNov = LocalDate.now();
-    LocalDate dateMinusDay = LocalDate.now().minusDays(5);
+    LocalDate dateMinusDay = LocalDate.now().minusDays(2);
 
     public SharesDto getShares(String code) {
         SharesDto response = callGetMethod(code,

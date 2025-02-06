@@ -25,37 +25,31 @@ public class SharesController {
 
     @GetMapping("/shares/one")
     public ResponseEntity<SharesDto> getData1() throws SharesProcessingException {
-        SharesDto sharesLists = sharesApiConfig.getShares("IXIC.INDX");
-        return ResponseEntity.ok(sharesLists);
+        try {
+            SharesDto sharesLists = sharesApiConfig.getShares("IXIC.INDX");
+            return ResponseEntity.ok(sharesLists);
+        } catch (Exception e) {
+            throw new SharesProcessingException("Error getData1");
+        }
     }
 
     @GetMapping("/shares/two")
     public ResponseEntity<SharesDto> getData2() throws SharesProcessingException {
-        SharesDto sharesLists = sharesApiConfig.getShares("US500.INDX");
-        return ResponseEntity.ok(sharesLists);
+        try {
+            SharesDto sharesLists = sharesApiConfig.getShares("US500.INDX");
+            return ResponseEntity.ok(sharesLists);
+        } catch (Exception e) {
+            throw new SharesProcessingException("Error getData2");
+        }
     }
 
     @GetMapping("/shares/three")
     public ResponseEntity<SharesDto> getData3() throws SharesProcessingException {
-        SharesDto sharesLists = sharesApiConfig.getShares("WIG20.INDX");
-        return ResponseEntity.ok(sharesLists);
-    }
-
-    @GetMapping("/shares/four")
-    public ResponseEntity<SharesDto> getData4() throws SharesProcessingException {
-        SharesDto sharesLists = sharesApiConfig.getShares("NVDA");
-        return ResponseEntity.ok(sharesLists);
-    }
-
-    @GetMapping("/shares/five")
-    public ResponseEntity<SharesDto> getData5() throws SharesProcessingException {
-        SharesDto sharesLists = sharesApiConfig.getShares("GOOG");
-        return ResponseEntity.ok(sharesLists);
-    }
-
-    @GetMapping("/shares/six")
-    public ResponseEntity<SharesDto> getData6() throws SharesProcessingException {
-        SharesDto sharesLists = sharesApiConfig.getShares("MSFT");
-        return ResponseEntity.ok(sharesLists);
+        try {
+            SharesDto sharesLists = sharesApiConfig.getShares("WIG20.INDX");
+            return ResponseEntity.ok(sharesLists);
+        } catch (Exception e) {
+            throw new SharesProcessingException("Error getData3");
+        }
     }
 }
