@@ -44,6 +44,7 @@ public class SpringSecurityConfig {
                     authorize.requestMatchers("/swagger-ui/**", "/swagger-resources/*", "/v3/api-docs/**").permitAll();
                     authorize.requestMatchers("/actuator", "/actuator/info", "/actuator/health").permitAll();
                     authorize.requestMatchers(HttpMethod.OPTIONS, "/**").permitAll();
+                    authorize.requestMatchers(HttpMethod.GET, "/api/notes/shares/**").permitAll();
                     authorize.anyRequest().authenticated();
                 }).httpBasic(Customizer.withDefaults());
 

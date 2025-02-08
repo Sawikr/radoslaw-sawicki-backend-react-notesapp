@@ -24,7 +24,7 @@ public class SharesController {
     private final SharesApiConfig sharesApiConfig;
 
     @GetMapping("/shares/one")
-    public ResponseEntity<SharesDto> getData1() throws SharesProcessingException {
+    public ResponseEntity<SharesDto> getData1() {
         try {
             SharesDto sharesLists = sharesApiConfig.getShares("IXIC.INDX");
             return ResponseEntity.ok(sharesLists);
@@ -34,7 +34,7 @@ public class SharesController {
     }
 
     @GetMapping("/shares/two")
-    public ResponseEntity<SharesDto> getData2() throws SharesProcessingException {
+    public ResponseEntity<SharesDto> getData2() {
         try {
             SharesDto sharesLists = sharesApiConfig.getShares("US500.INDX");
             return ResponseEntity.ok(sharesLists);
@@ -44,7 +44,7 @@ public class SharesController {
     }
 
     @GetMapping("/shares/three")
-    public ResponseEntity<SharesDto> getData3() throws SharesProcessingException {
+    public ResponseEntity<SharesDto> getData3() {
         try {
             SharesDto sharesLists = sharesApiConfig.getShares("WIG20.INDX");
             return ResponseEntity.ok(sharesLists);
