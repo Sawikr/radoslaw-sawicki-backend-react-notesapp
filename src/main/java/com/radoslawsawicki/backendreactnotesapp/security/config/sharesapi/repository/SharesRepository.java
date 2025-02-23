@@ -1,6 +1,6 @@
-package com.radoslawsawicki.backendreactnotesapp.sharesapi.repository;
+package com.radoslawsawicki.backendreactnotesapp.security.config.sharesapi.repository;
 
-import com.radoslawsawicki.backendreactnotesapp.sharesapi.domain.Shares;
+import com.radoslawsawicki.backendreactnotesapp.security.config.sharesapi.domain.Shares;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 import java.util.List;

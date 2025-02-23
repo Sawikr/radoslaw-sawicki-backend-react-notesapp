@@ -1,6 +1,6 @@
-package com.radoslawsawicki.backendreactnotesapp.sharesapi.client;
+package com.radoslawsawicki.backendreactnotesapp.security.config.sharesapi.client;
 
-import com.radoslawsawicki.backendreactnotesapp.sharesapi.dto.SharesDto;
+import com.radoslawsawicki.backendreactnotesapp.security.config.sharesapi.dto.SharesDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -23,7 +23,7 @@ public class SharesApiConfig {
     private String dateTo;
 
     LocalDate dateNov = LocalDate.now();
-    LocalDate dateMinusDay = LocalDate.now().minusDays(2);
+    LocalDate dateMinusDay = LocalDate.now().minusDays(3);
 
     public SharesDto getShares(String code) {
         SharesDto response = callGetMethod(code,

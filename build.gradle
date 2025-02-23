@@ -59,3 +59,7 @@ tasks.named('test') {
 springBoot {
     buildInfo()
 }
+
+tasks.named("bootBuildImage") {
+    bindings = ["${projectDir}/bindings/ca-certificates:/platform/bindings/ca-certificates"]
+}
