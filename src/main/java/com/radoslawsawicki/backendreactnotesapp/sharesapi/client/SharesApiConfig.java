@@ -1,6 +1,6 @@
-package com.radoslawsawicki.backendreactnotesapp.security.config.sharesapi.client;
+package com.radoslawsawicki.backendreactnotesapp.sharesapi.client;
 
-import com.radoslawsawicki.backendreactnotesapp.security.config.sharesapi.dto.SharesDto;
+import com.radoslawsawicki.backendreactnotesapp.sharesapi.dto.SharesDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;

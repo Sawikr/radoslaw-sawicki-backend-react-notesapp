@@ -1,6 +1,6 @@
-package com.radoslawsawicki.backendreactnotesapp.security.config.sharesapi.repository;
+package com.radoslawsawicki.backendreactnotesapp.sharesapi.repository;
 
-import com.radoslawsawicki.backendreactnotesapp.security.config.sharesapi.domain.Pagination;
+import com.radoslawsawicki.backendreactnotesapp.sharesapi.domain.Pagination;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 import java.util.Optional;

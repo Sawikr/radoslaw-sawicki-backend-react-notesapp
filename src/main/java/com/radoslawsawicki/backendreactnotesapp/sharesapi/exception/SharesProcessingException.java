@@ -1,4 +1,4 @@
-package com.radoslawsawicki.backendreactnotesapp.security.config.sharesapi.exception;
+package com.radoslawsawicki.backendreactnotesapp.sharesapi.exception;
 
 import org.springframework.http.HttpStatusCode;
 import org.springframework.web.client.HttpClientErrorException;

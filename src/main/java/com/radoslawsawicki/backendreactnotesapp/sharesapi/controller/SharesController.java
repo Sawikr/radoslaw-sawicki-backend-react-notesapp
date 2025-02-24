@@ -1,8 +1,8 @@
-package com.radoslawsawicki.backendreactnotesapp.security.config.sharesapi.controller;
+package com.radoslawsawicki.backendreactnotesapp.sharesapi.controller;
 
-import com.radoslawsawicki.backendreactnotesapp.security.config.sharesapi.client.SharesApiConfig;
-import com.radoslawsawicki.backendreactnotesapp.security.config.sharesapi.dto.SharesDto;
-import com.radoslawsawicki.backendreactnotesapp.security.config.sharesapi.exception.SharesProcessingException;
+import com.radoslawsawicki.backendreactnotesapp.sharesapi.client.SharesApiConfig;
+import com.radoslawsawicki.backendreactnotesapp.sharesapi.dto.SharesDto;
+import com.radoslawsawicki.backendreactnotesapp.sharesapi.exception.SharesProcessingException;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@CrossOrigin("*")
+@CrossOrigin(origins = {"https://sawikr.github.io"})
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/notes")

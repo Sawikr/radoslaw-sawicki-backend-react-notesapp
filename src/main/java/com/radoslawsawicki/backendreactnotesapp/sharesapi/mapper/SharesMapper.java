@@ -1,7 +1,7 @@
-package com.radoslawsawicki.backendreactnotesapp.security.config.sharesapi.mapper;
+package com.radoslawsawicki.backendreactnotesapp.sharesapi.mapper;
 
-import com.radoslawsawicki.backendreactnotesapp.security.config.sharesapi.dto.SharesDto;
-import com.radoslawsawicki.backendreactnotesapp.security.config.sharesapi.domain.Shares;
+import com.radoslawsawicki.backendreactnotesapp.sharesapi.dto.SharesDto;
+import com.radoslawsawicki.backendreactnotesapp.sharesapi.domain.Shares;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
