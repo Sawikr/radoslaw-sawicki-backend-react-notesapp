@@ -58,8 +58,6 @@ public class SpringSecurityConfig {
 
         http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 
-        //http.cors(Customizer.withDefaults());
-
         http.headers(header -> header.addHeaderWriter(new StaticHeadersWriter("Access-Control-Allow-Origin", "*")));
 
         return http.build();
@@ -73,9 +71,9 @@ public class SpringSecurityConfig {
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(List.of("*"));
+        configuration.setAllowedOrigins(List.of("http://localhost:3000", "https://sawikr.github.io"));
         configuration.setAllowedMethods(List.of("*"));
-        //configuration.setAllowCredentials(true);
+        configuration.setAllowCredentials(true);
         configuration.addAllowedHeader("*");
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
