@@ -19,6 +19,8 @@ import org.springframework.security.web.header.writers.StaticHeadersWriter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+
+import java.util.Collections;
 import java.util.List;
 
 @Configuration
@@ -71,7 +73,8 @@ public class SpringSecurityConfig {
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(List.of("http://localhost:3000", "https://sawikr.github.io"));
+        //configuration.setAllowedOrigins(List.of("http://localhost:3000", "https://sawikr.github.io"));
+        configuration.setAllowedOriginPatterns(List.of("*"));
         configuration.setAllowedMethods(List.of("*"));
         configuration.setAllowCredentials(true);
         configuration.addAllowedHeader("*");
