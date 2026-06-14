@@ -109,5 +109,15 @@
       "name": "shares_date_to",
       "type": "java.lang.String",
       "description": "Description for shares_date_to."
+    },
+    {
+      "name": "spring.datasource.host",
+      "type": "java.lang.String",
+      "description": "Description for spring.datasource.host."
+    },
+    {
+      "name": "spring.datasource.database",
+      "type": "java.lang.String",
+      "description": "Description for spring.datasource.database."
     }
   ] }
