@@ -1,11 +1,20 @@
 package com.radoslawsawicki.backendreactnotesapp.currencyapi.client;
 
 import com.radoslawsawicki.backendreactnotesapp.currencyapi.dto.CurrencyDto;
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import io.swagger.v3.oas.annotations.info.Info;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
+@OpenAPIDefinition(
+        info = @Info(
+                title = "Important API Update: Transition to HTTPS.",
+                description = "Only Effective August 1, 2025, all API communications must be conducted over HTTPS." +
+                        "The HTTP protocol will no longer be supported for accessing our API services. " +
+                        "This change is part of our ongoing commitment to enhancing security and protecting your data during transmission."
+        ))
 @Component
 @RequiredArgsConstructor
 public class CurrencyClient {
