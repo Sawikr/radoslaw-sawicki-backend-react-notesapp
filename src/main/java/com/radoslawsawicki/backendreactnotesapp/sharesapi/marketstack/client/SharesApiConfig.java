@@ -1,10 +1,11 @@
-package com.radoslawsawicki.backendreactnotesapp.sharesapi.client;
+package com.radoslawsawicki.backendreactnotesapp.sharesapi.marketstack.client;
 
-import com.radoslawsawicki.backendreactnotesapp.sharesapi.dto.SharesDto;
+import com.radoslawsawicki.backendreactnotesapp.sharesapi.marketstack.dto.SharesDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
+
 import java.time.LocalDate;
 
 @Component

@@ -1,8 +1,8 @@
-package com.radoslawsawicki.backendreactnotesapp.sharesapi.controller;
+package com.radoslawsawicki.backendreactnotesapp.sharesapi.massive.controller;
 
-import com.radoslawsawicki.backendreactnotesapp.sharesapi.client.SharesApiConfig;
-import com.radoslawsawicki.backendreactnotesapp.sharesapi.dto.SharesDto;
-import com.radoslawsawicki.backendreactnotesapp.sharesapi.exception.SharesProcessingException;
+import com.radoslawsawicki.backendreactnotesapp.sharesapi.massive.client.SharesApiConfigMassive;
+import com.radoslawsawicki.backendreactnotesapp.sharesapi.massive.dto.SharesMassiveDto;
+import com.radoslawsawicki.backendreactnotesapp.sharesapi.massive.exception.SharesProcessingException;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -16,37 +16,37 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 @RequestMapping("/api/notes")
 @Tag(
-        name = "CRUD REST APIs for shares",
+        name = "CRUD REST APIs for shares - MASSIVE",
         description = "CRUD REST APIs to CREATE, UPDATE, FETCH and DELETE shares"
 )
-public class SharesController {
+public class SharesControllerMassive {
 
-    private final SharesApiConfig sharesApiConfig;
+    private final SharesApiConfigMassive sharesApiConfig;
 
-    @GetMapping("/shares/one")
-    public ResponseEntity<SharesDto> getData1() {
+    @GetMapping("/shares/oneS")
+    public ResponseEntity<SharesMassiveDto> getData1() {
         try {
-            SharesDto sharesLists = sharesApiConfig.getShares("IXIC.INDX");
+            SharesMassiveDto sharesLists = sharesApiConfig.getShares("I:NDX");
             return ResponseEntity.ok(sharesLists);
         } catch (Exception e) {
             throw new SharesProcessingException("Error getData1");
         }
     }
 
-    @GetMapping("/shares/two")
-    public ResponseEntity<SharesDto> getData2() {
+    @GetMapping("/shares/twoS")
+    public ResponseEntity<SharesMassiveDto> getData2() {
         try {
-            SharesDto sharesLists = sharesApiConfig.getShares("US500.INDX");
+            SharesMassiveDto sharesLists = sharesApiConfig.getShares("I:SPX");
             return ResponseEntity.ok(sharesLists);
         } catch (Exception e) {
             throw new SharesProcessingException("Error getData2");
         }
     }
 
-    @GetMapping("/shares/three")
-    public ResponseEntity<SharesDto> getData3() {
+    @GetMapping("/shares/threeS")
+    public ResponseEntity<SharesMassiveDto> getData3() {
         try {
-            SharesDto sharesLists = sharesApiConfig.getShares("WIG20.INDX");
+            SharesMassiveDto sharesLists = sharesApiConfig.getShares("I:COMP");
             return ResponseEntity.ok(sharesLists);
         } catch (Exception e) {
             throw new SharesProcessingException("Error getData3");

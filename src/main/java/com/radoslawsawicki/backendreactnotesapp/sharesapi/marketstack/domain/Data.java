@@ -1,4 +1,4 @@
-package com.radoslawsawicki.backendreactnotesapp.sharesapi.domain;
+package com.radoslawsawicki.backendreactnotesapp.sharesapi.marketstack.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -8,7 +8,7 @@ import lombok.*;
 @RequiredArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name="DATES")
+@Table(name="DATES_MARKETSTACK")
 public class Data {
 
     private Long id;
@@ -144,7 +144,7 @@ public class Data {
     }
 
     @ManyToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "SHARES_ID")
+    @JoinColumn(name = "SHARES_MARKETSTACK_ID")
     public Shares getShares() {
         return shares;
     }

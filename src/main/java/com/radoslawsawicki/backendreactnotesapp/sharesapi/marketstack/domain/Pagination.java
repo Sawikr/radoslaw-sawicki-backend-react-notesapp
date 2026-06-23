@@ -1,4 +1,4 @@
-package com.radoslawsawicki.backendreactnotesapp.sharesapi.domain;
+package com.radoslawsawicki.backendreactnotesapp.sharesapi.marketstack.domain;
 
 import jakarta.persistence.*;
 import lombok.*;

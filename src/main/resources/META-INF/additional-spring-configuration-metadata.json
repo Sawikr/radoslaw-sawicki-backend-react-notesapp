@@ -109,5 +109,15 @@
       "name": "shares_date_to",
       "type": "java.lang.String",
       "description": "Description for shares_date_to."
+    },
+    {
+      "name": "shares_massive_url_.api.endpoint",
+      "type": "java.lang.String",
+      "description": "Description for shares_massive_url_.api.endpoint."
+    },
+    {
+      "name": "shares_massive_apikey",
+      "type": "java.lang.String",
+      "description": "Description for shares_massive_apikey."
     }
   ] }

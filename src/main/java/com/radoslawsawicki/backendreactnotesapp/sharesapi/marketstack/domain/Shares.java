@@ -1,7 +1,8 @@
-package com.radoslawsawicki.backendreactnotesapp.sharesapi.domain;
+package com.radoslawsawicki.backendreactnotesapp.sharesapi.marketstack.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,7 +11,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name="SHARES")
+@Table(name="SHARES_MARKETSTACK")
 public class Shares {
 
     private Long id;

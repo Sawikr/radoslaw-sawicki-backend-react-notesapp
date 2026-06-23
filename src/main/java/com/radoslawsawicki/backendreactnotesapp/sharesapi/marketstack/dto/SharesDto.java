@@ -1,10 +1,11 @@
-package com.radoslawsawicki.backendreactnotesapp.sharesapi.dto;
+package com.radoslawsawicki.backendreactnotesapp.sharesapi.marketstack.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.radoslawsawicki.backendreactnotesapp.sharesapi.domain.Data;
-import com.radoslawsawicki.backendreactnotesapp.sharesapi.domain.Pagination;
+import com.radoslawsawicki.backendreactnotesapp.sharesapi.marketstack.domain.Data;
+import com.radoslawsawicki.backendreactnotesapp.sharesapi.marketstack.domain.Pagination;
 import lombok.*;
+
 import java.util.List;
 
 @Builder
